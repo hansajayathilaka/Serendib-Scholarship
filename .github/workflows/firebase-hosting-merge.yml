@@ -7,7 +7,7 @@ name: Deploy to Firebase Hosting on merge
     branches:
       - release/*
 jobs:
-  mihil_deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -22,5 +22,5 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_SERENDIB_SCHOLARSHIPS }}'
           channelId: live
-          projectId: mihil-ep-system
-          target: mihil-ep
+          projectId: serendib-scholarships
+          target: serendib
