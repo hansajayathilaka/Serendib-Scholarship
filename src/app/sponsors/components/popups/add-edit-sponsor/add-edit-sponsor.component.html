@@ -1,0 +1,102 @@
+<h2 mat-dialog-title>{{TITLE}}</h2>
+<mat-card-content style="max-height: fit-content">
+    <form [formGroup]="sponsorForm">
+        <div class="w-100">
+            <div class="row w-100 mx-0">
+                <div class="col-6">
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>{{SPONSOR_MESSAGES.ID}}</mat-label>
+                        <input formControlName="ID" matInput>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row w-100 mx-0">
+                <div class="col-6">
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>{{NAME_MESSAGES.FIRST}}</mat-label>
+                        <input formControlName="FirstName" matInput>
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>{{NAME_MESSAGES.MIDDLE}}</mat-label>
+                        <input formControlName="MiddleName" matInput>
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>{{NAME_MESSAGES.LAST}}</mat-label>
+                        <input formControlName="LastName" matInput>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row w-100 mx-0">
+                <div class="col-6">
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>{{SPONSOR_MESSAGES.EMAIL}}</mat-label>
+                        <input formControlName="Email" matInput type="email">
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>{{SPONSOR_MESSAGES.CONTACT_NUMBER}}</mat-label>
+                        <input formControlName="ContactNumber" matInput type="number">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row w-100 mx-0">
+                <div class="col-6">
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>{{ADDRESS_MESSAGES.ADDRESS1}}</mat-label>
+                        <input formControlName="Address1" matInput>
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>{{ADDRESS_MESSAGES.ADDRESS2}}</mat-label>
+                        <input formControlName="Address2" matInput>
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>{{ADDRESS_MESSAGES.CITY}}</mat-label>
+                        <input formControlName="City" matInput>
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>{{ADDRESS_MESSAGES.STATE}}</mat-label>
+                        <input formControlName="State" matInput>
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>{{ADDRESS_MESSAGES.ZIP_CODE}}</mat-label>
+                        <input formControlName="ZipCode" matInput>
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>{{ADDRESS_MESSAGES.COUNTRY}}</mat-label>
+                        <input formControlName="Country" matInput>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </form>
+</mat-card-content>
+<mat-dialog-actions>
+    <div class="row w-100 mx-0 align-items-center justify-content-end">
+        <div class="d-flex justify-content-end">
+            <button (click)="onClickSave()" cdkFocusInitial class="btn-p" color="primary" mat-raised-button
+                    [disabled]="sponsorForm.invalid">
+                <mat-icon>done</mat-icon>
+                {{COMMON_MESSAGES.SAVE_BUTTON_TEXT}}
+            </button>
+            <button [mat-dialog-close]="false" mat-button mat-dialog-close>
+                <mat-icon>close</mat-icon>
+                {{COMMON_MESSAGES.CANCEL_BUTTON_TEXT}}
+            </button>
+        </div>
+    </div>
+</mat-dialog-actions>

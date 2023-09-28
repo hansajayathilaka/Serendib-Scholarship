@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "serendib-scholarships": {
+      "hosting": {
+        "serendib": [
+          "serendib"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "serendib-scholarships"
+  }
+}

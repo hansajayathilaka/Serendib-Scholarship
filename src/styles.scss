@@ -1,0 +1,124 @@
+/* You can add global styles to this file, and also import other style files */
+@use 'app/theme' as theme;
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.btn-p {
+  color: theme.$primary-button-fg !important;
+  background-color: theme.$primary-button-bg !important;
+}
+
+.btn-s {
+  background-color: theme.$secondary-button-bg !important;
+}
+
+.btn-disabled {
+  background-color: theme.$disabled-button-bg !important;
+}
+
+.error-snack-bar {
+  color: white;
+  background-color: #B04644 !important;
+}
+
+.success-snack-bar {
+  color: white;
+  background-color: #188050 !important;
+}
+
+.info-snack-bar {
+  color: white;
+  background-color: #1C658C !important;
+}
+
+.mat-progress-spinner circle, .mat-spinner circle {
+  stroke: #188050 !important;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.mat-tab-body-wrapper {
+  height: 90%;
+}
+
+button[class*="mat-button-disabled"].mat-raised-button {
+  background-color: #7b9b9b !important;
+}
+
+.mat-focused .mat-form-field-label {
+  color: theme.$primary-button-bg !important;
+}
+
+.mat-form-field-invalid .mat-form-field-ripple {
+  color: #f44336 !important;
+}
+
+.mat-form-field-ripple {
+  background-color: theme.$primary-button-bg !important;
+}
+
+.mat-primary .mat-pseudo-checkbox-checked {
+  background-color: theme.$primary-button-bg !important;
+}
+
+.mat-selected .mat-option-text {
+  color: theme.$primary-button-bg !important;
+}
+
+.mat-calendar-body-cell-content {
+
+  &.mat-focus-indicator {
+    &:hover {
+      background-color: #8bbebe !important;
+    }
+  }
+
+  &.mat-calendar-body-selected {
+    background-color: theme.$side-nav-background !important;
+
+    &:hover {
+      background-color: theme.$primary-button-bg !important;
+    }
+  }
+}
+
+.filter-btn {
+  height: 50px !important;
+  min-width: 120px !important;
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar {
+  background-color: theme.$primary-button-bg !important;
+}
+
+.mat-list-item-content {
+  width: 100% !important;
+}
+:host ::ng-deep .mat-icon-button {
+  color: theme.$icon-button-bg;
+}
+
+table.mat-table {
+    display: table;
+    width: inherit;
+}
