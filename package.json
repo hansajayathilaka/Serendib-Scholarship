@@ -4,9 +4,6 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port=4100",
-    "start-bimrich": "ng serve bimrich-ep --port=4100",
-    "start-mihil": "ng serve mihil-ep --port=4100",
-    "start-dev": "ng serve dev-ep --port=4100",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
