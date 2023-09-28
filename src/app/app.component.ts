@@ -62,7 +62,6 @@ export class AppComponent {
 
     logo: string = `https://placehold.co/250x64?text=Serendib+Scholarships`;
 
-
     logout() {
         this.auth.SignOut().then(() => {
             this.isLoggedIn = false;

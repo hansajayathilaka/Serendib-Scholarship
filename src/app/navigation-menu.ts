@@ -1,6 +1,6 @@
 import { NavigationMenuItem } from "./types";
 import { NavigationMenu } from "./constants";
-import {SponsorRoutes} from "./route-data";
+import {SponsorRoutes, StudentRoutes} from "./route-data";
 
 export const NavigationMenuItems: NavigationMenuItem[] = [
     {
@@ -12,8 +12,7 @@ export const NavigationMenuItems: NavigationMenuItem[] = [
     {
         menuText: NavigationMenu.STUDENTS,
         iconName: "school",
-        // navigationLink: `/${ProjectRoutes.Root}`,
-        navigationLink: `/${SponsorRoutes.Root}`,
+        navigationLink: `/${StudentRoutes.Root}`,
         subMenuItems: []
     },
 ];

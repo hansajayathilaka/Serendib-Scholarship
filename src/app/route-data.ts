@@ -19,6 +19,10 @@ export class SponsorRoutes {
     public static readonly All = {url: 'all', title: 'Sponsors'};
 }
 
+export class StudentRoutes {
+    public static readonly Root = 'students';
+    public static readonly All = {url: 'all', title: 'Students'};
+}
 
 export class AuthRoutes {
     public static readonly Root = 'auth'

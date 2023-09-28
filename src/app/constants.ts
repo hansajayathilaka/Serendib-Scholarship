@@ -14,6 +14,13 @@ export enum Roles {
     USER,
 }
 
+export enum PaymentFrequency {
+    MONTHLY = "Monthly",
+    QUARTERLY = "Quarterly",
+    SIX_MONTHLY = "Six Monthly",
+    ANNUALLY = "Annually",
+}
+
 export class Common {
     public static readonly COPYRIGHT_TEXT = '© 2023. All Rights Reserved.';
     public static readonly COMPANY_NAME = 'Serendib Scholarships';
@@ -129,19 +136,44 @@ export class Address {
 }
 
 export class Sponsors {
-    public static readonly ID = "Id ";
+    public static readonly ID = "ID";
     public static readonly ADD_NEW = "Add New Sponsor";
     public static readonly EDIT = "Edit Sponsor";
     public static readonly NAME = "Sponsor Name";
     public static readonly CONTACT_NUMBER = "Contact Number";
     public static readonly ADDRESS = "Address";
     public static readonly EMAIL = "Email";
+    public static readonly MONTHLY_PAYMENT = "Monthly Payment";
+    public static readonly PAYMENT_FREQUENCY = "Payment Frequency";
+    public static readonly LAST_PAYMENT_DATE = "Last Payment Date";
+    public static readonly LAST_PAYMENT_AMOUNT = "Last Payment Amount";
+    public static readonly NOTES = "Notes";
     public static readonly DELETE_CONFIRM = "Are you want to delete this sponsor?";
     public static readonly DELETE_TITLE = "Delete Sponsor";
     public static readonly ADDED_SUCCESS = "Sponsor Created Successfully";
     public static readonly UPDATED_SUCCESS = "Sponsor Updated Successfully";
     public static readonly DELETED_SUCCESS = "Sponsor Deleted Successfully";
-    public static readonly DELETED_FAILED = "Sponsor Deleted Failed";
+}
+
+export class Students {
+    public static readonly ID = "ID";
+    public static readonly ADD_NEW = "Add New Student";
+    public static readonly EDIT = "Edit Student";
+    public static readonly NAME = "Student Name";
+    public static readonly CONTACT_NUMBER = "Contact Number";
+    public static readonly ADDRESS = "Address";
+    public static readonly EMAIL = "Email";
+    public static readonly INSTITUTE = "Institute";
+    public static readonly COURSE = "Course";
+    public static readonly COURSE_DURATION = "Course Duration";
+    public static readonly START_DATE = "Start Date";
+    public static readonly STUDENTS_STUDY_YEAR = "Students Study Year";
+    public static readonly SPONSOR = "Sponsor";
+    public static readonly DELETE_CONFIRM = "Are you want to delete this student?";
+    public static readonly DELETE_TITLE = "Delete Student";
+    public static readonly ADDED_SUCCESS = "Student Created Successfully";
+    public static readonly UPDATED_SUCCESS = "Student Updated Successfully";
+    public static readonly DELETED_SUCCESS = "Student Deleted Successfully";
 }
 
 export class ErrorMessages {

@@ -1,11 +1,11 @@
 <h2 mat-dialog-title>{{TITLE}}</h2>
 <mat-card-content style="max-height: fit-content">
-    <form [formGroup]="sponsorForm">
+    <form [formGroup]="studentForm">
         <div class="w-100">
             <div class="row w-100 mx-0">
                 <div class="col-6">
                     <mat-form-field appearance="fill" class="w-100">
-                        <mat-label>{{SPONSOR_MESSAGES.ID}}</mat-label>
+                        <mat-label>{{STUDENT_MESSAGES.ID}}</mat-label>
                         <input formControlName="ID" matInput>
                     </mat-form-field>
                 </div>
@@ -33,13 +33,13 @@
             <div class="row w-100 mx-0">
                 <div class="col-6">
                     <mat-form-field appearance="fill" class="w-100">
-                        <mat-label>{{SPONSOR_MESSAGES.EMAIL}}</mat-label>
+                        <mat-label>{{STUDENT_MESSAGES.EMAIL}}</mat-label>
                         <input formControlName="Email" matInput type="email">
                     </mat-form-field>
                 </div>
                 <div class="col-6">
                     <mat-form-field appearance="fill" class="w-100">
-                        <mat-label>{{SPONSOR_MESSAGES.CONTACT_NUMBER}}</mat-label>
+                        <mat-label>{{STUDENT_MESSAGES.CONTACT_NUMBER}}</mat-label>
                         <input formControlName="ContactNumber" matInput type="number">
                     </mat-form-field>
                 </div>
@@ -85,38 +85,44 @@
             <div class="row w-100 mx-0">
                 <div class="col-6">
                     <mat-form-field appearance="fill" class="w-100">
-                        <mat-label>{{SPONSOR_MESSAGES.MONTHLY_PAYMENT}}</mat-label>
-                        <input formControlName="MonthlyPayment" matInput type="number">
+                        <mat-label>{{STUDENT_MESSAGES.INSTITUTE}}</mat-label>
+                        <input formControlName="Institute" matInput>
                     </mat-form-field>
                 </div>
                 <div class="col-6">
                     <mat-form-field appearance="fill" class="w-100">
-                        <mat-label>{{SPONSOR_MESSAGES.PAYMENT_FREQUENCY}}</mat-label>
-                        <mat-select formControlName="PaymentFrequency">
-                            <mat-option *ngFor="let item of PaymentFrequencyList" [value]="item.value">
-                                {{item.value}}
-                            </mat-option>
-                        </mat-select>
+                        <mat-label>{{STUDENT_MESSAGES.COURSE}}</mat-label>
+                        <input formControlName="Course" matInput>
                     </mat-form-field>
                 </div>
                 <div class="col-6">
                     <mat-form-field appearance="fill" class="w-100">
-                        <mat-label>{{SPONSOR_MESSAGES.LAST_PAYMENT_DATE}}</mat-label>
-                        <input formControlName="LastPaymentDate" matInput [matDatepicker]="picker">
+                        <mat-label>{{STUDENT_MESSAGES.COURSE_DURATION}}</mat-label>
+                        <input formControlName="CourseDuration" matInput type="number">
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>{{STUDENT_MESSAGES.START_DATE}}</mat-label>
+                        <input formControlName="StartDate" matInput [matDatepicker]="picker">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
                 </div>
                 <div class="col-6">
                     <mat-form-field appearance="fill" class="w-100">
-                        <mat-label>{{SPONSOR_MESSAGES.LAST_PAYMENT_AMOUNT}}</mat-label>
-                        <input formControlName="LastPaymentAmount" matInput type="number">
+                        <mat-label>{{STUDENT_MESSAGES.STUDENTS_STUDY_YEAR}}</mat-label>
+                        <input formControlName="StudentsStudyYear" matInput type="number">
                     </mat-form-field>
                 </div>
                 <div class="col-6">
                     <mat-form-field appearance="fill" class="w-100">
-                        <mat-label>{{SPONSOR_MESSAGES.NOTES}}</mat-label>
-                        <textarea formControlName="Notes" matInput></textarea>
+                        <mat-label>{{STUDENT_MESSAGES.SPONSOR}}</mat-label>
+                        <mat-select formControlName="Sponsor">
+                            <mat-option *ngFor="let sponsor of sponsors" [value]="sponsor">
+                                {{sponsor.Name.First + ' ' + sponsor.Name.Middle + ' ' + sponsor.Name.Last}}
+                            </mat-option>
+                        </mat-select>
                     </mat-form-field>
                 </div>
             </div>
@@ -127,7 +133,7 @@
     <div class="row w-100 mx-0 align-items-center justify-content-end">
         <div class="d-flex justify-content-end">
             <button (click)="onClickSave()" cdkFocusInitial class="btn-p" color="primary" mat-raised-button
-                    [disabled]="sponsorForm.invalid">
+                    [disabled]="studentForm.invalid">
                 <mat-icon>done</mat-icon>
                 {{COMMON_MESSAGES.SAVE_BUTTON_TEXT}}
             </button>

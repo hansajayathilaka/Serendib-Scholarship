@@ -1,28 +1,28 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
-import {HelperService} from "../../../services/helper.service";
-import {ActionMenuItem, Sponsor} from "../../../types";
-import {Common, Projects, SnackBarStatus, Sponsors} from "../../../constants";
-import {DeleteConfirmPopupComponent} from "../../../shared/delete-confirm-popup/delete-confirm-popup.component";
-import {AddEditSponsorComponent} from "../popups/add-edit-sponsor/add-edit-sponsor.component";
 import {SponsorsService} from "../../../services/sponsors.service";
+import {HelperService} from "../../../services/helper.service";
+import {ActionMenuItem, Student} from "../../../types";
+import {Common, Projects, SnackBarStatus, Sponsors, Students} from "../../../constants";
+import {AddEditStudentComponent} from "../popups/add-edit-student/add-edit-student.component";
+import {DeleteConfirmPopupComponent} from "../../../shared/delete-confirm-popup/delete-confirm-popup.component";
+import {StudentsService} from "../../../services/students.service";
 
 @Component({
-  selector: 'app-action-menu',
-  templateUrl: './action-menu.component.html',
-  styleUrls: ['./action-menu.component.scss']
+    selector: 'app-action-menu',
+    templateUrl: './action-menu.component.html',
+    styleUrls: ['./action-menu.component.scss']
 })
 export class ActionMenuComponent implements OnInit {
 
     constructor(
-        private router: Router,
         private matDialog: MatDialog,
-        private sponsorsService: SponsorsService,
+        private studentsService: StudentsService,
         private helperService: HelperService
-    ) { }
+    ) {
+    }
 
-    @Input() data!: Sponsor;
+    @Input() data!: Student;
 
     ACTION_MENU_ITEMS: ActionMenuItem<ActionMenuComponent>[] = [
         {
@@ -41,9 +41,9 @@ export class ActionMenuComponent implements OnInit {
     }
 
     onClickEdit(): void {
-        const dialogRef = this.matDialog.open(AddEditSponsorComponent, {
+        const dialogRef = this.matDialog.open(AddEditStudentComponent, {
             width: '800px',
-            data: {sponsor: this.data, edit: 1}
+            data: {student: this.data, edit: 1}
         });
         dialogRef.afterClosed().subscribe(result => {
             console.log(`Dialog result: ${result}`);
@@ -51,12 +51,11 @@ export class ActionMenuComponent implements OnInit {
     }
 
     onClickDelete(): void {
-        debugger;
         const dialogRef = this.matDialog.open(DeleteConfirmPopupComponent, {
             width: '350px',
             data: {
-                title: Sponsors.DELETE_TITLE,
-                body: Sponsors.DELETE_CONFIRM,
+                title: Students.DELETE_TITLE,
+                body: Students.DELETE_CONFIRM,
                 entityName: this.data.Name.First + " " + this.data.Name.Last
             }
         });
@@ -64,9 +63,9 @@ export class ActionMenuComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             debugger;
             if (result) {
-                this.sponsorsService.deleteSponsor(this.data).then(() => {
+                this.studentsService.deleteStudent(this.data).then(() => {
                     this.helperService.openSnackBar({
-                        text: Sponsors.DELETED_SUCCESS,
+                        text: Students.DELETED_SUCCESS,
                         status: SnackBarStatus.SUCCESS
                     });
                 });

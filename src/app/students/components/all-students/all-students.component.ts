@@ -1,39 +1,38 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
-import {Common, Sponsors} from "../../../constants";
+import {Common, Students} from "../../../constants";
 import {MatTableDataSource} from "@angular/material/table";
-import {Sponsor} from "../../../types";
-import {Subscription} from "rxjs";
+import {Sponsor, Student} from "../../../types";
+import {firstValueFrom, Subscription} from "rxjs";
+import {StudentsService} from "../../../services/students.service";
 import {MatDialog} from "@angular/material/dialog";
-// import {SponsorsActions} from "../../store/sponsors.action";
-// import GetAllSponsors = SponsorsActions.GetAllSponsors;
-// import {Store} from "@ngxs/store";
-// import {SponsorState} from "../../store/sponsors.state";
-import {AddEditSponsorComponent} from "../popups/add-edit-sponsor/add-edit-sponsor.component";
+import {AddEditStudentComponent} from "../popups/add-edit-student/add-edit-student.component";
 import {SponsorsService} from "../../../services/sponsors.service";
+import {Router} from "@angular/router";
 
 @Component({
-    selector: 'app-all-sponsors',
-    templateUrl: './all-sponsors.component.html',
-    styleUrls: ['./all-sponsors.component.scss']
+    selector: 'app-all-students',
+    templateUrl: './all-students.component.html',
+    styleUrls: ['./all-students.component.scss']
 })
-export class AllSponsorsComponent implements OnInit {
+export class AllStudentsComponent implements OnInit {
 
     @ViewChild(MatSort) sort!: MatSort;
     @ViewChild(MatPaginator) paginator!: MatPaginator;
 
     displayedColumns: string[] = [
-        Sponsors.ID,
-        Sponsors.NAME,
-        Sponsors.EMAIL,
-        Sponsors.CONTACT_NUMBER,
-        Common.ACTION_COLUMN_TEXT
+        Students.ID,
+        Students.NAME,
+        Students.EMAIL,
+        Students.CONTACT_NUMBER,
+        Students.SPONSOR,
+        Common.ACTION_COLUMN_TEXT,
     ];
 
-    dataSource: MatTableDataSource<Sponsor> = new MatTableDataSource<Sponsor>();
+    dataSource: MatTableDataSource<Student> = new MatTableDataSource<Student>();
 
-    SPONSOR_MESSAGES = Sponsors;
+    STUDENT_MESSAGES = Students;
     COMMON_MESSAGES = Common;
 
     subscriptions: Subscription[] = [];
@@ -41,15 +40,14 @@ export class AllSponsorsComponent implements OnInit {
 
     constructor(
         // private store: Store,
-        private sponsorService: SponsorsService,
+        private router: Router,
+        private studentsService: StudentsService,
         private matDialog: MatDialog
     ) {
     }
 
-    ngOnInit(): void {
-        // this.store.dispatch(new GetAllSponsors());
-        // this.subscriptions.push(this.store.select(SponsorState.sponsors).subscribe(data => {
-        this.subscriptions.push(this.sponsorService.getAllSponsors().subscribe(data => {
+    async ngOnInit() {
+        this.subscriptions.push(this.studentsService.getAllStudents().subscribe(data => {
             debugger;
             if (data === undefined) {
                 this.isLoading = true;
@@ -63,7 +61,7 @@ export class AllSponsorsComponent implements OnInit {
         }));
     }
 
-    applyFilter(event: Event) {
+    applyFilter(event: Event): void {
         const filterValue = (event.target as HTMLInputElement).value;
         this.dataSource.filter = filterValue.trim().toLowerCase();
         if (this.dataSource.paginator) {
@@ -71,8 +69,8 @@ export class AllSponsorsComponent implements OnInit {
         }
     }
 
-    ngOnClickAdd() {
-        const dialogRef = this.matDialog.open(AddEditSponsorComponent, {
+    ngOnClickAdd(): void {
+        const dialogRef = this.matDialog.open(AddEditStudentComponent, {
             width: '800px',
             data: {edit: 0}
         });
@@ -80,4 +78,10 @@ export class AllSponsorsComponent implements OnInit {
             console.log(`Dialog result: ${result}`);
         });
     }
+
+    gotoSponsor(sponsor: Sponsor): void {
+        const destination = `/sponsors/${sponsor._ID}`;
+        this.router.navigate([destination]).then(r => {})
+    }
+
 }

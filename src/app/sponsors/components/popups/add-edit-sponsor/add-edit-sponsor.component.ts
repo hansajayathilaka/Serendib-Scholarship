@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {Address, Common, ErrorMessages, Names, SnackBarStatus, Sponsors} from "../../../../constants";
+import {Address, Common, ErrorMessages, Names, PaymentFrequency, SnackBarStatus, Sponsors} from "../../../../constants";
 import {Sponsor} from "../../../../types";
 import {FormBuilder, Validators} from "@angular/forms";
 import {HelperService} from "../../../../services/helper.service";
@@ -7,9 +7,9 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {SponsorsService} from "../../../../services/sponsors.service";
 
 @Component({
-  selector: 'app-add-edit-sponsor',
-  templateUrl: './add-edit-sponsor.component.html',
-  styleUrls: ['./add-edit-sponsor.component.scss']
+    selector: 'app-add-edit-sponsor',
+    templateUrl: './add-edit-sponsor.component.html',
+    styleUrls: ['./add-edit-sponsor.component.scss']
 })
 export class AddEditSponsorComponent implements OnInit {
 
@@ -24,17 +24,18 @@ export class AddEditSponsorComponent implements OnInit {
     isSubmitted = false;
     showErrorMessage = false;
 
-  constructor(
-      private formBuilder: FormBuilder,
-      private helperService: HelperService,
-      private sponsorsService: SponsorsService,
-      // private store: Store,
-      private dialogRef: MatDialogRef<AddEditSponsorComponent>,
-      @Inject(MAT_DIALOG_DATA) private data: { sponsor: Sponsor, edit: number }
+    PaymentFrequencyList = Object.entries(PaymentFrequency).map(([key, value]) => ({ key, value }));
 
-  ) {
+    constructor(
+        private formBuilder: FormBuilder,
+        private helperService: HelperService,
+        private sponsorsService: SponsorsService,
+        // private store: Store,
+        private dialogRef: MatDialogRef<AddEditSponsorComponent>,
+        @Inject(MAT_DIALOG_DATA) private data: { sponsor: Sponsor, edit: number }
+    ) {
 
-  }
+    }
 
     sponsorForm = this.formBuilder.group({
         ID: this.formBuilder.control('', [Validators.required]),
@@ -49,10 +50,17 @@ export class AddEditSponsorComponent implements OnInit {
         State: this.formBuilder.control(''),
         ZipCode: this.formBuilder.control(''),
         Country: this.formBuilder.control(''),
+
+        MonthlyPayment: this.formBuilder.control(''),
+        PaymentFrequency: this.formBuilder.control(''),
+        LastPaymentDate: this.formBuilder.control(''),
+        LastPaymentAmount: this.formBuilder.control(''),
+        Notes: this.formBuilder.control(''),
     });
 
 
     ngOnInit(): void {
+        debugger;
         if (this.data.edit == 1) {
             this.TITLE = this.SPONSOR_MESSAGES.EDIT;
             this.sponsorForm.controls['ID'].setValue(this.data.sponsor.ID);
@@ -67,10 +75,16 @@ export class AddEditSponsorComponent implements OnInit {
             this.sponsorForm.controls['State'].setValue(this.data.sponsor.Address.State);
             this.sponsorForm.controls['ZipCode'].setValue(this.data.sponsor.Address.ZipCode);
             this.sponsorForm.controls['Country'].setValue(this.data.sponsor.Address.Country);
+
+            this.sponsorForm.controls['MonthlyPayment'].setValue(this.data.sponsor.MonthlyPayment);
+            this.sponsorForm.controls['PaymentFrequency'].setValue(this.data.sponsor.PaymentFrequency);
+            this.sponsorForm.controls['LastPaymentDate'].setValue(this.data.sponsor.LastPaymentDate);
+            this.sponsorForm.controls['LastPaymentAmount'].setValue(this.data.sponsor.LastPaymentAmount);
+            this.sponsorForm.controls['Notes'].setValue(this.data.sponsor.Notes);
         } else {
             this.TITLE = this.SPONSOR_MESSAGES.ADD_NEW;
         }
-  }
+    }
 
     onClickSave() {
         this.isSubmitted = true;
@@ -93,6 +107,11 @@ export class AddEditSponsorComponent implements OnInit {
                     ZipCode: this.sponsorForm.value.ZipCode ?? "",
                     Country: this.sponsorForm.value.Country ?? ""
                 },
+                MonthlyPayment: this.sponsorForm.value.MonthlyPayment ?? 0,
+                PaymentFrequency: this.sponsorForm.value.PaymentFrequency ?? PaymentFrequency.MONTHLY,
+                LastPaymentDate: this.sponsorForm.value.LastPaymentDate ?? new Date(),
+                LastPaymentAmount: this.sponsorForm.value.LastPaymentAmount ?? 0,
+                Notes: this.sponsorForm.value.Notes ?? "",
                 IsActive: true,
                 _Deleted: false,
             }

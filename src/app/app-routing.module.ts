@@ -4,7 +4,7 @@ import { NotFoundComponent } from "./shared/not-found/not-found.component";
 import { LoginRequiredGuard } from "./guards/login-required.guard";
 import {
     AuthRoutes,
-    ProjectRoutes, SponsorRoutes,
+    ProjectRoutes, SponsorRoutes, StudentRoutes,
 } from "./route-data";
 
 
@@ -26,6 +26,11 @@ const routes: Routes = [
     {
         path: SponsorRoutes.Root,
         loadChildren: () => import("./sponsors/sponsors.module").then(m => m.SponsorsModule),
+        canActivate: [LoginRequiredGuard]
+    },
+    {
+        path: StudentRoutes.Root,
+        loadChildren: () => import("./students/students.module").then(m => m.StudentsModule),
         canActivate: [LoginRequiredGuard]
     },
     {

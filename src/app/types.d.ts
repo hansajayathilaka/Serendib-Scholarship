@@ -1,4 +1,4 @@
-import { Roles, SnackBarStatus } from "./constants";
+import {PaymentFrequency, Roles, SnackBarStatus} from "./constants";
 import firebase from "firebase/compat";
 import { MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from "@angular/material/snack-bar";
 import { DocumentReference } from "@firebase/firestore";
@@ -97,6 +97,33 @@ export interface Sponsor {
     Address: Address;
     Email: string;
     Phone: string;
+
+    MonthlyPayment: number;
+    PaymentFrequency: PaymentFrequency;
+    LastPaymentDate: Date | Timestamp;
+    LastPaymentAmount: number;
+    Notes: string;
+
+    IsActive: boolean;
+    _Deleted: boolean;
+}
+
+export interface Student {
+    _ID?: DocumentReference;
+    ID?: string;
+    Name: Name;
+    Address: Address;
+    Email: string;
+    Phone: string;
+
+    Institute: string;
+    Course: string;
+    CourseDuration: string;
+    StartDate: Date | Timestamp;
+    StudentsStudyYear: string;
+    _Sponsor?: DocumentReference<Sponsor>;
+    Sponsor?: Sponsor
+
     IsActive: boolean;
     _Deleted: boolean;
 }
