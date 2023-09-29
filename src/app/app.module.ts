@@ -19,6 +19,7 @@ import { AngularFireModule } from "@angular/fire/compat";
 import { MAT_DIALOG_DEFAULT_OPTIONS } from "@angular/material/dialog";
 import { BackwardConfirmPopupComponent } from './shared/backward-confirm-popup/backward-confirm-popup.component';
 import {SponsorsModule} from "./sponsors/sponsors.module";
+import { provideStorage,getStorage } from '@angular/fire/storage';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import {SponsorsModule} from "./sponsors/sponsors.module";
         provideAuth(() => getAuth()),
         provideFirestore(() => getFirestore()),
         provideFunctions(() => getFunctions()),
+        provideStorage(() => getStorage()),
     ],
     providers: [
         {provide: REGION, useValue: 'us-central1'},

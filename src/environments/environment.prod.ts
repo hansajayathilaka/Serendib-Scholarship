@@ -7,6 +7,7 @@ export const environment = {
         projectId: 'serendib-scholarships',
         appId: '1:42750177043:web:b250173a14ec8f9c5ef4e6',
         storageBucket: 'serendib-scholarships.appspot.com',
+        locationId: 'asia-southeast1',
         apiKey: 'AIzaSyAA7uXgLj9-X8BLzLxA9iyxImKxqTniHFM',
         authDomain: 'serendib-scholarships.firebaseapp.com',
         messagingSenderId: '42750177043',
