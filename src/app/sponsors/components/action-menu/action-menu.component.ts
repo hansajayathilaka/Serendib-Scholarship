@@ -32,7 +32,7 @@ export class ActionMenuComponent implements OnInit {
             action: "onClickEdit"
         },
         {
-            actionText: Common.UPLOAD,
+            actionText: Common.ATTACHMENTS,
             iconName: 'upload',
             action: "onClickUpload"
         },
@@ -62,7 +62,7 @@ export class ActionMenuComponent implements OnInit {
 
     onClickUpload(): void {
         const dialogRef = this.matDialog.open(FileUploadComponent, {
-            width: '500px'
+            width: '800px'
         });
         dialogRef.afterClosed().subscribe(result => {
             console.log(`Dialog result: ${result}`);

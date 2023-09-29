@@ -33,7 +33,7 @@ export class Common {
     public static readonly PAGE_NOT_FOUND = 'Page Not Found';
     public static readonly EDIT = 'Edit';
     public static readonly VIEW = 'View';
-    public static readonly UPLOAD = 'Upload';
+    public static readonly ATTACHMENTS = 'Attachments';
     public static readonly DELETE_BUTTON_TEXT = 'Delete';
     public static readonly WARNING_TITLE = 'Warning';
     public static readonly UPLOAD_TITLE = 'Upload Files';

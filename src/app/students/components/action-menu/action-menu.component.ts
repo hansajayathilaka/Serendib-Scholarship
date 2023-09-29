@@ -37,7 +37,7 @@ export class ActionMenuComponent implements OnInit {
             action: "onClickView"
         },
         {
-            actionText: Common.UPLOAD,
+            actionText: Common.ATTACHMENTS,
             iconName: 'upload',
             action: "onClickUpload"
         },
