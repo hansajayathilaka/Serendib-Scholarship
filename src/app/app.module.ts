@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthModule } from './auth/auth.module';
 import { MaterialModule } from "./app.material.module";
-import { ProjectsModule } from "./projects/projects.module";
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { getAuth, provideAuth } from '@angular/fire/auth';
@@ -35,7 +34,6 @@ import {SponsorsModule} from "./sponsors/sponsors.module";
         BrowserAnimationsModule,
         AuthModule,
         MaterialModule,
-        ProjectsModule,
         SponsorsModule,
         HttpClientModule,
         AngularFireModule.initializeApp(environment.firebase),

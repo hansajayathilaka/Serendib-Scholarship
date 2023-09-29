@@ -19,11 +19,6 @@ const routes: Routes = [
         loadChildren: () => import("./auth/auth.module").then(m => m.AuthModule)
     },
     {
-        path: ProjectRoutes.Root,
-        loadChildren: () => import("./projects/projects.module").then(m => m.ProjectsModule),
-        canActivate: [LoginRequiredGuard]
-    },
-    {
         path: SponsorRoutes.Root,
         loadChildren: () => import("./sponsors/sponsors.module").then(m => m.SponsorsModule),
         canActivate: [LoginRequiredGuard]

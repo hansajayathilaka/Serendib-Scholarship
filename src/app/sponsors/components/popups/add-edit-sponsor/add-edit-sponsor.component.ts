@@ -30,9 +30,8 @@ export class AddEditSponsorComponent implements OnInit {
         private formBuilder: FormBuilder,
         private helperService: HelperService,
         private sponsorsService: SponsorsService,
-        // private store: Store,
         private dialogRef: MatDialogRef<AddEditSponsorComponent>,
-        @Inject(MAT_DIALOG_DATA) private data: { sponsor: Sponsor, edit: number }
+        @Inject(MAT_DIALOG_DATA) public data: { sponsor: Sponsor, mode: number }
     ) {
 
     }
@@ -61,7 +60,7 @@ export class AddEditSponsorComponent implements OnInit {
 
     ngOnInit(): void {
         debugger;
-        if (this.data.edit == 1) {
+        if (this.data.mode == 1 || this.data.mode == 0) {
             this.TITLE = this.SPONSOR_MESSAGES.EDIT;
             this.sponsorForm.controls['ID'].setValue(this.data.sponsor.ID);
             this.sponsorForm.controls['FirstName'].setValue(this.data.sponsor.Name.First);
@@ -83,6 +82,11 @@ export class AddEditSponsorComponent implements OnInit {
             this.sponsorForm.controls['Notes'].setValue(this.data.sponsor.Notes);
         } else {
             this.TITLE = this.SPONSOR_MESSAGES.ADD_NEW;
+        }
+
+        if (this.data.mode == 0) {
+            this.TITLE = this.SPONSOR_MESSAGES.VIEW;
+            this.sponsorForm.disable();
         }
     }
 
@@ -118,7 +122,7 @@ export class AddEditSponsorComponent implements OnInit {
 
             this.dialogRef.close();
 
-            if (this.data.edit == 1) {
+            if (this.data.mode == 1) {
                 sponsor._ID = this.data.sponsor._ID;
                 this.sponsorsService.updateSponsor(sponsor).then(r => {
                     if (!r.status) {

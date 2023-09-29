@@ -132,7 +132,7 @@
 <mat-dialog-actions>
     <div class="row w-100 mx-0 align-items-center justify-content-end">
         <div class="d-flex justify-content-end">
-            <button (click)="onClickSave()" cdkFocusInitial class="btn-p" color="primary" mat-raised-button
+            <button *ngIf="data.mode != 0" (click)="onClickSave()" cdkFocusInitial class="btn-p" color="primary" mat-raised-button
                     [disabled]="studentForm.invalid">
                 <mat-icon>done</mat-icon>
                 {{COMMON_MESSAGES.SAVE_BUTTON_TEXT}}
