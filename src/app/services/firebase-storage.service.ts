@@ -6,7 +6,7 @@ import {
     uploadBytes,
     StorageReference,
     getDownloadURL,
-    deleteObject
+    deleteObject, getMetadata
 } from "@angular/fire/storage";
 import {v4 as uuidv4} from 'uuid';
 import {FnResponse} from "../types";
@@ -28,6 +28,9 @@ export class FirebaseStorageService {
         try {
             const res = await uploadBytes(storageRef, file, {
                 contentType: file.type,
+                customMetadata: {
+                    'fileName': file.name
+                }
             });
             return {
                 status: true,
@@ -50,8 +53,17 @@ export class FirebaseStorageService {
             const refList = await listAll(storageRef);
             const refObjList = [];
             for (const item of refList.items) {
+
+                const metaData = await getMetadata(item);
+                let exactFileName: string;
+                if (metaData.customMetadata && metaData.customMetadata['fileName']) {
+                    exactFileName = metaData.customMetadata['fileName'];
+                } else {
+                    exactFileName = item.name;
+                }
+
                 refObjList.push({
-                    name: item.name,
+                    name: exactFileName,
                     ref: item,
                 });
             }
