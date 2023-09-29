@@ -10,7 +10,6 @@ import {
 } from "@angular/fire/storage";
 import {v4 as uuidv4} from 'uuid';
 import {FnResponse} from "../types";
-import * as path from "path";
 
 @Injectable({
     providedIn: 'root'
@@ -25,7 +24,7 @@ export class FirebaseStorageService {
     async uploadFile(file: File, filePath: string): Promise<FnResponse> {
         debugger
         const id = uuidv4();
-        const storageRef = ref(this.storage, `Attachments/${filePath}/${id}${path.extname(file.name)}`);
+        const storageRef = ref(this.storage, `Attachments/${filePath}/${id}.${file.name.split('.').pop()}`);
         try {
             const res = await uploadBytes(storageRef, file, {
                 contentType: file.type,
