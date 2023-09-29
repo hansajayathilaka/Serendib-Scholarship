@@ -23,12 +23,13 @@ export class FirebaseStorageService {
     }
 
     async uploadFile(file: File, filePath: string): Promise<FnResponse> {
+        debugger
         const id = uuidv4();
         const storageRef = ref(this.storage, `Attachments/${filePath}/${id}${path.extname(file.name)}`);
         try {
             const res = await uploadBytes(storageRef, file, {
                 contentType: file.type,
-            })
+            });
             return {
                 status: true,
                 message: 'File uploaded successfully.',

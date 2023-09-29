@@ -48,6 +48,6 @@
 </div>
 <div mat-dialog-actions align="end">
     <button mat-raised-button class="btn-p" color="primary"
-            [mat-dialog-close]="true">{{COMMON_MESSAGES.SAVE_BUTTON_TEXT}}</button>
+            (click)="onClickSaveUploads()">{{COMMON_MESSAGES.SAVE_BUTTON_TEXT}}</button>
     <button mat-button [mat-dialog-close]="false">{{COMMON_MESSAGES.CANCEL_BUTTON_TEXT}}</button>
 </div>

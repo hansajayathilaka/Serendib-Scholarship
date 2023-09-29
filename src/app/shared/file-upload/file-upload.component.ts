@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Common } from "../../constants";
+import { FirebaseStorageService } from "../../services/firebase-storage.service";
 
 @Component({
   selector: 'app-file-upload',
@@ -8,7 +9,7 @@ import { Common } from "../../constants";
 })
 export class FileUploadComponent implements OnInit {
 
-  constructor() { }
+  constructor(private FirebaseStorageService: FirebaseStorageService) { }
 
 
   COMMON_MESSAGES = Common;
@@ -85,6 +86,16 @@ export class FileUploadComponent implements OnInit {
   }
 
   onClickSaveUploads(): void {
-
+    if (this.files.length > 0) {
+      for (const item of this.files) {
+        debugger
+        const file = new File([item], item.name, { type: item.type });
+          this.FirebaseStorageService.uploadFile(file, 'test').then((res) => {
+            console.log(res);
+          });
+      }
+    } else {
+        console.log('No files to upload.');
+    }
   }
 }
