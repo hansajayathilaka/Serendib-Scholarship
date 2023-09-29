@@ -9,6 +9,9 @@ import { StudentsService } from "../../../services/students.service";
 import { MatDialog } from "@angular/material/dialog";
 import { AddEditStudentComponent } from "../popups/add-edit-student/add-edit-student.component";
 import { Router } from "@angular/router";
+import {
+    AddEditSponsorComponent
+} from "../../../sponsors/components/popups/add-edit-sponsor/add-edit-sponsor.component";
 
 @Component({
     selector: 'app-all-students',
@@ -67,6 +70,17 @@ export class AllStudentsComponent implements OnInit {
         }
     }
 
+    onClickSponsor(sponsor: Sponsor) {
+        const dialogRef = this.matDialog.open(AddEditSponsorComponent, {
+            width: '800px',
+            height: '500px',
+            data: {sponsor: sponsor, mode: 0}
+        })
+        dialogRef.afterClosed().subscribe(result => {
+            console.log(`Dialog result: ${result}`);
+        });
+    }
+
     ngOnClickAdd(): void {
         const dialogRef = this.matDialog.open(AddEditStudentComponent, {
             width: '800px',
@@ -76,12 +90,6 @@ export class AllStudentsComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             console.log(`Dialog result: ${result}`);
         });
-    }
-
-    gotoSponsor(sponsor: Sponsor): void {
-        const destination = `/sponsors/${sponsor._ID}`;
-        this.router.navigate([destination]).then(r => {
-        })
     }
 
 }

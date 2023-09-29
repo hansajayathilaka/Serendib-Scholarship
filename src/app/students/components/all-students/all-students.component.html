@@ -45,7 +45,8 @@
 
                     <ng-container matColumnDef="{{STUDENT_MESSAGES.SPONSOR}}">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{STUDENT_MESSAGES.SPONSOR}} </th>
-                        <td mat-cell *matCellDef="let row" (click)="gotoSponsor(row.Sponsor)"> {{ row.Sponsor.Name.First }} {{ row.Sponsor.Name.Middle }} {{ row.Sponsor.Name.Last }} </td>
+                        <td mat-cell *matCellDef="let row" (click)="onClickSponsor(row.Sponsor)">
+                            {{ row.Sponsor.Name.First + " " + row.Sponsor.Name.Middle + " " + row.Sponsor.Name.Last }} </td>
                     </ng-container>
 
                     <ng-container matColumnDef="{{COMMON_MESSAGES.ACTION_COLUMN_TEXT}}">

@@ -5,7 +5,8 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {HelperService} from "../../../../services/helper.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {SponsorsService} from "../../../../services/sponsors.service";
-
+import firebase from "firebase/compat";
+import Timestamp = firebase.firestore.Timestamp;
 @Component({
     selector: 'app-add-edit-sponsor',
     templateUrl: './add-edit-sponsor.component.html',
@@ -77,7 +78,7 @@ export class AddEditSponsorComponent implements OnInit {
 
             this.sponsorForm.controls['MonthlyPayment'].setValue(this.data.sponsor.MonthlyPayment);
             this.sponsorForm.controls['PaymentFrequency'].setValue(this.data.sponsor.PaymentFrequency);
-            this.sponsorForm.controls['LastPaymentDate'].setValue(this.data.sponsor.LastPaymentDate);
+            this.sponsorForm.controls['LastPaymentDate'].setValue((this.data.sponsor.LastPaymentDate as Timestamp).toDate());
             this.sponsorForm.controls['LastPaymentAmount'].setValue(this.data.sponsor.LastPaymentAmount);
             this.sponsorForm.controls['Notes'].setValue(this.data.sponsor.Notes);
         } else {

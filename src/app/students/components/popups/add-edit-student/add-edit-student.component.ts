@@ -7,6 +7,8 @@ import { Sponsor, Student } from "../../../../types";
 import { StudentsService } from "../../../../services/students.service";
 import { Subscription } from "rxjs";
 import { SponsorsService } from "../../../../services/sponsors.service";
+import firebase from "firebase/compat";
+import Timestamp = firebase.firestore.Timestamp;
 
 @Component({
     selector: 'app-add-edit-student',
@@ -81,7 +83,7 @@ export class AddEditStudentComponent implements OnInit {
             this.studentForm.controls['Institute'].setValue(this.data.student.Institute);
             this.studentForm.controls['Course'].setValue(this.data.student.Course);
             this.studentForm.controls['CourseDuration'].setValue(this.data.student.CourseDuration);
-            this.studentForm.controls['StartDate'].setValue(this.data.student.StartDate);
+            this.studentForm.controls['StartDate'].setValue((this.data.student.StartDate as Timestamp).toDate());
             this.studentForm.controls['StudentsStudyYear'].setValue(this.data.student.StudentsStudyYear);
 
         } else {
