@@ -66,7 +66,7 @@ export class ActionMenuComponent implements OnInit {
         const dialogRef = this.matDialog.open(AddEditStudentComponent, {
             width: '800px',
             height: '500px',
-            data: {student: this.data, mode: 1}
+            data: {student: this.data, mode: 0}
         });
         dialogRef.afterClosed().subscribe(result => {
             console.log(`Dialog result: ${result}`);
