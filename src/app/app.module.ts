@@ -19,6 +19,9 @@ import { AngularFireModule } from "@angular/fire/compat";
 import { MAT_DIALOG_DEFAULT_OPTIONS } from "@angular/material/dialog";
 import { BackwardConfirmPopupComponent } from './shared/backward-confirm-popup/backward-confirm-popup.component';
 import {SponsorsModule} from "./sponsors/sponsors.module";
+import { FileUploadComponent } from './shared/file-upload/file-upload.component';
+import { DragAndDropDirective } from './directives/drag-and-drop.directive';
+import { ProgressComponent } from './shared/progress/progress.component';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 
 
@@ -27,7 +30,10 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
         AppComponent,
         NotFoundComponent,
         DeleteConfirmPopupComponent,
-        BackwardConfirmPopupComponent
+        BackwardConfirmPopupComponent,
+        FileUploadComponent,
+        DragAndDropDirective,
+        ProgressComponent
     ],
     imports: [
         BrowserModule,

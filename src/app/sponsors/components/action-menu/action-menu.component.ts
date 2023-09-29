@@ -7,6 +7,7 @@ import {Common, Projects, SnackBarStatus, Sponsors} from "../../../constants";
 import {DeleteConfirmPopupComponent} from "../../../shared/delete-confirm-popup/delete-confirm-popup.component";
 import {AddEditSponsorComponent} from "../popups/add-edit-sponsor/add-edit-sponsor.component";
 import {SponsorsService} from "../../../services/sponsors.service";
+import { FileUploadComponent } from "../../../shared/file-upload/file-upload.component";
 
 @Component({
   selector: 'app-action-menu',
@@ -31,6 +32,11 @@ export class ActionMenuComponent implements OnInit {
             action: "onClickEdit"
         },
         {
+            actionText: Common.UPLOAD,
+            iconName: 'upload',
+            action: "onClickUpload"
+        },
+        {
             actionText: Common.VIEW,
             iconName: 'visibility',
             action: "onClickView"
@@ -47,9 +53,16 @@ export class ActionMenuComponent implements OnInit {
 
     onClickEdit(): void {
         const dialogRef = this.matDialog.open(AddEditSponsorComponent, {
-            width: '800px',
-            height: '500px',
-            data: {sponsor: this.data, mode: 1}
+            width: '800px'
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            console.log(`Dialog result: ${result}`);
+        });
+    }
+
+    onClickUpload(): void {
+        const dialogRef = this.matDialog.open(FileUploadComponent, {
+            width: '500px'
         });
         dialogRef.afterClosed().subscribe(result => {
             console.log(`Dialog result: ${result}`);
