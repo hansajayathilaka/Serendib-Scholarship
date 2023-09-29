@@ -32,6 +32,7 @@ export class Common {
     public static readonly SAVING = 'Saving... Please wait';
     public static readonly PAGE_NOT_FOUND = 'Page Not Found';
     public static readonly EDIT = 'Edit';
+    public static readonly VIEW = 'View';
     public static readonly DELETE_BUTTON_TEXT = 'Delete';
     public static readonly WARNING_TITLE = 'Warning';
     public static readonly YES_BUTTON_TEXT = 'Yes';
@@ -138,6 +139,7 @@ export class Address {
 export class Sponsors {
     public static readonly ID = "ID";
     public static readonly ADD_NEW = "Add New Sponsor";
+    public static readonly VIEW = "View Sponsor";
     public static readonly EDIT = "Edit Sponsor";
     public static readonly NAME = "Sponsor Name";
     public static readonly CONTACT_NUMBER = "Contact Number";
@@ -158,6 +160,7 @@ export class Sponsors {
 export class Students {
     public static readonly ID = "ID";
     public static readonly ADD_NEW = "Add New Student";
+    public static readonly VIEW = "View Student";
     public static readonly EDIT = "Edit Student";
     public static readonly NAME = "Student Name";
     public static readonly CONTACT_NUMBER = "Contact Number";

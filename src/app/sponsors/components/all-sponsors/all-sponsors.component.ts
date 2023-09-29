@@ -74,6 +74,7 @@ export class AllSponsorsComponent implements OnInit {
     ngOnClickAdd() {
         const dialogRef = this.matDialog.open(AddEditSponsorComponent, {
             width: '800px',
+            height: '500px',
             data: {edit: 0}
         });
         dialogRef.afterClosed().subscribe(result => {

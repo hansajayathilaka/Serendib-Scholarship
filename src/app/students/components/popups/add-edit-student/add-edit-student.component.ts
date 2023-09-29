@@ -1,12 +1,12 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {Address, Common, ErrorMessages, Names, SnackBarStatus, Sponsors, Students} from "../../../../constants";
-import {FormBuilder} from "@angular/forms";
-import {HelperService} from "../../../../services/helper.service";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {Sponsor, Student} from "../../../../types";
-import {StudentsService} from "../../../../services/students.service";
-import {firstValueFrom, Subscription} from "rxjs";
-import {SponsorsService} from "../../../../services/sponsors.service";
+import { Component, Inject, OnInit } from '@angular/core';
+import { Address, Common, ErrorMessages, Names, SnackBarStatus, Students } from "../../../../constants";
+import { FormBuilder } from "@angular/forms";
+import { HelperService } from "../../../../services/helper.service";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { Sponsor, Student } from "../../../../types";
+import { StudentsService } from "../../../../services/students.service";
+import { Subscription } from "rxjs";
+import { SponsorsService } from "../../../../services/sponsors.service";
 
 @Component({
     selector: 'app-add-edit-student',
@@ -36,7 +36,7 @@ export class AddEditStudentComponent implements OnInit {
         private sponsorsService: SponsorsService,
         // private store: Store,
         private dialogRef: MatDialogRef<AddEditStudentComponent>,
-        @Inject(MAT_DIALOG_DATA) private data: { student: Student, edit: number }
+        @Inject(MAT_DIALOG_DATA) public data: { student: Student, mode: number }
     ) {
     }
 
@@ -63,7 +63,7 @@ export class AddEditStudentComponent implements OnInit {
     });
 
     async ngOnInit() {
-        if (this.data.edit == 1) {
+        if (this.data.mode == 1 || this.data.mode == 0) {
             this.TITLE = this.STUDENT_MESSAGES.EDIT;
             this.studentForm.controls['ID'].setValue(this.data.student.ID);
             this.studentForm.controls['FirstName'].setValue(this.data.student.Name.First);
@@ -86,6 +86,11 @@ export class AddEditStudentComponent implements OnInit {
 
         } else {
             this.TITLE = this.STUDENT_MESSAGES.ADD_NEW;
+        }
+
+        if (this.data.mode == 0) {
+            this.TITLE = this.STUDENT_MESSAGES.VIEW;
+            this.studentForm.disable();
         }
 
         this.subscriptions.push(this.sponsorsService.getAllSponsors().subscribe(data => {
@@ -134,7 +139,7 @@ export class AddEditStudentComponent implements OnInit {
 
             this.dialogRef.close();
 
-            if (this.data.edit == 1) {
+            if (this.data.mode == 1) {
                 student._ID = this.data.student._ID;
                 this.studentsService.updateStudent(student).then(r => {
                     if (!r.status) {

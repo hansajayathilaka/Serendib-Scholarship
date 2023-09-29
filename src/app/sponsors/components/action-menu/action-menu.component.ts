@@ -31,6 +31,11 @@ export class ActionMenuComponent implements OnInit {
             action: "onClickEdit"
         },
         {
+            actionText: Common.VIEW,
+            iconName: 'visibility',
+            action: "onClickView"
+        },
+        {
             actionText: Common.DELETE_BUTTON_TEXT,
             iconName: 'delete',
             action: "onClickDelete"
@@ -43,7 +48,19 @@ export class ActionMenuComponent implements OnInit {
     onClickEdit(): void {
         const dialogRef = this.matDialog.open(AddEditSponsorComponent, {
             width: '800px',
-            data: {sponsor: this.data, edit: 1}
+            height: '500px',
+            data: {sponsor: this.data, mode: 1}
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            console.log(`Dialog result: ${result}`);
+        });
+    }
+
+    onClickView(): void {
+        const dialogRef = this.matDialog.open(AddEditSponsorComponent, {
+            width: '800px',
+            height: '500px',
+            data: {sponsor: this.data, mode: 0}
         });
         dialogRef.afterClosed().subscribe(result => {
             console.log(`Dialog result: ${result}`);

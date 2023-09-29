@@ -1,15 +1,14 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatSort} from "@angular/material/sort";
-import {MatPaginator} from "@angular/material/paginator";
-import {Common, Students} from "../../../constants";
-import {MatTableDataSource} from "@angular/material/table";
-import {Sponsor, Student} from "../../../types";
-import {firstValueFrom, Subscription} from "rxjs";
-import {StudentsService} from "../../../services/students.service";
-import {MatDialog} from "@angular/material/dialog";
-import {AddEditStudentComponent} from "../popups/add-edit-student/add-edit-student.component";
-import {SponsorsService} from "../../../services/sponsors.service";
-import {Router} from "@angular/router";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSort } from "@angular/material/sort";
+import { MatPaginator } from "@angular/material/paginator";
+import { Common, Students } from "../../../constants";
+import { MatTableDataSource } from "@angular/material/table";
+import { Sponsor, Student } from "../../../types";
+import { Subscription } from "rxjs";
+import { StudentsService } from "../../../services/students.service";
+import { MatDialog } from "@angular/material/dialog";
+import { AddEditStudentComponent } from "../popups/add-edit-student/add-edit-student.component";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'app-all-students',
@@ -39,7 +38,6 @@ export class AllStudentsComponent implements OnInit {
     isLoading = true;
 
     constructor(
-        // private store: Store,
         private router: Router,
         private studentsService: StudentsService,
         private matDialog: MatDialog
@@ -72,6 +70,7 @@ export class AllStudentsComponent implements OnInit {
     ngOnClickAdd(): void {
         const dialogRef = this.matDialog.open(AddEditStudentComponent, {
             width: '800px',
+            height: '500px',
             data: {edit: 0}
         });
         dialogRef.afterClosed().subscribe(result => {
@@ -81,7 +80,8 @@ export class AllStudentsComponent implements OnInit {
 
     gotoSponsor(sponsor: Sponsor): void {
         const destination = `/sponsors/${sponsor._ID}`;
-        this.router.navigate([destination]).then(r => {})
+        this.router.navigate([destination]).then(r => {
+        })
     }
 
 }
