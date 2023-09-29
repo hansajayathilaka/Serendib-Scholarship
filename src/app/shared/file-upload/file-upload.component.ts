@@ -86,6 +86,7 @@ export class FileUploadComponent implements OnInit {
   }
 
   onClickSaveUploads(): void {
+    debugger
     if (this.files.length > 0) {
       for (const item of this.files) {
         debugger
