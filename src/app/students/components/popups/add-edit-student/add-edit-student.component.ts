@@ -83,7 +83,9 @@ export class AddEditStudentComponent implements OnInit {
             this.studentForm.controls['Institute'].setValue(this.data.student.Institute);
             this.studentForm.controls['Course'].setValue(this.data.student.Course);
             this.studentForm.controls['CourseDuration'].setValue(this.data.student.CourseDuration);
-            this.studentForm.controls['StartDate'].setValue((this.data.student.StartDate as Timestamp).toDate());
+            try{
+                this.studentForm.controls['StartDate'].setValue((this.data.student.StartDate as Timestamp).toDate());
+            } catch (e) { }
             this.studentForm.controls['StudentsStudyYear'].setValue(this.data.student.StudentsStudyYear);
 
         } else {
@@ -142,6 +144,7 @@ export class AddEditStudentComponent implements OnInit {
             this.dialogRef.close();
 
             if (this.data.mode == 1) {
+                debugger;
                 student._ID = this.data.student._ID;
                 this.studentsService.updateStudent(student).then(r => {
                     if (!r.status) {

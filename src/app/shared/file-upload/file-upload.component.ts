@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import { Common } from "../../constants";
 import { FirebaseStorageService } from "../../services/firebase-storage.service";
 import { StorageReference } from "@angular/fire/storage";
+import {AuthService} from "../../services/auth.service";
+import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {Sponsor, Student} from "../../types";
 
 @Component({
     selector: 'app-file-upload',
@@ -10,16 +13,28 @@ import { StorageReference } from "@angular/fire/storage";
 })
 export class FileUploadComponent implements OnInit {
 
-    constructor(private FirebaseStorageService: FirebaseStorageService) {
+    constructor(
+        private firebaseStorageService: FirebaseStorageService,
+        @Inject(MAT_DIALOG_DATA) public data: Sponsor | Student
+    ) {
     }
-
 
     COMMON_MESSAGES = Common;
     files: any[] = [];
     existingFiles: any[] = [];
 
+    saveBtnDisabled = false;
+
     ngOnInit(): void {
-        this.FirebaseStorageService.getFileRefList('test').then((res) => {
+        this.reloadExistingFiles();
+    }
+
+    reloadExistingFiles(): void {
+        let id = '';
+        if (this.data._ID) {
+            id = String(this.data._ID);
+        }
+        this.firebaseStorageService.getFileRefList(id).then((res) => {
             if (res.status) {
                 this.existingFiles = res.data;
             }
@@ -31,7 +46,7 @@ export class FileUploadComponent implements OnInit {
      */
     onFileDropped($event: any) {
         debugger
-        this.prepareFilesList($event.files);
+        this.prepareFilesList($event);
     }
 
     /**
@@ -43,7 +58,7 @@ export class FileUploadComponent implements OnInit {
     }
 
 
-    prepareFilesList(files: Array<any>) {
+    prepareFilesList(files: Array<any> | any) {
         for (const item of files) {
             item.progress = 0;
             this.files.push(item);
@@ -78,7 +93,7 @@ export class FileUploadComponent implements OnInit {
 
 
     onClickDownload(fileRef: any): void {
-        this.FirebaseStorageService.getFileDownloadURL(fileRef as StorageReference).then((res) => {
+        this.firebaseStorageService.getFileDownloadURL(fileRef as StorageReference).then((res) => {
             if (res.status) {
                 const anchor = document.createElement("a");
                 anchor.download = res.data.fileName;
@@ -90,6 +105,7 @@ export class FileUploadComponent implements OnInit {
     }
 
     uploadFilesSimulator(index: number) {
+        debugger;
         setTimeout(() => {
             if (index === this.files.length) {
                 return;
@@ -107,25 +123,42 @@ export class FileUploadComponent implements OnInit {
     }
 
     onClickSaveUploads(): void {
-        debugger
+        this.saveBtnDisabled = true;
         if (this.files.length > 0) {
             for (const item of this.files) {
-                debugger
+                let id = '';
+                if (this.data._ID) {
+                    id = String(this.data._ID);
+                }
                 const file = new File([item], item.name, {type: item.type});
-                this.FirebaseStorageService.uploadFile(file, 'test').then((res) => {
+                this.firebaseStorageService.uploadFile(file, id).then((res) => {
                     console.log(res);
+                    this.files = [];
+                    this.saveBtnDisabled = false;
+                    this.reloadExistingFiles();
+                }).catch((err) => {
+                    console.log(err);
+                    this.saveBtnDisabled = false;
+                    this.reloadExistingFiles();
                 });
             }
         } else {
             console.log('No files to upload.');
+            this.saveBtnDisabled = false;
+            this.reloadExistingFiles();
         }
     }
 
     onClickDelete(fileRef: StorageReference) {
-        this.FirebaseStorageService.deleteFile(fileRef).then((res) => {
+        this.firebaseStorageService.deleteFile(fileRef).then((res) => {
             if (res.status) {
                 console.log(res.message);
-                this.FirebaseStorageService.getFileRefList('test').then((res) => {
+
+                let id = '';
+                if (this.data._ID) {
+                    id = String(this.data._ID);
+                }
+                this.firebaseStorageService.getFileRefList(id).then((res) => {
                     if (res.status) {
                         this.existingFiles = res.data;
                     }

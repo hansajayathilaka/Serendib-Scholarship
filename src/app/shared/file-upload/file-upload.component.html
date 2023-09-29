@@ -1,5 +1,5 @@
 <h2 mat-dialog-title>{{COMMON_MESSAGES.UPLOAD_TITLE}}</h2>
-<div mat-dialog-content style="height: 100%; overflow: unset;">
+<div mat-dialog-content style="height: auto; overflow: unset;">
     <div class="row">
         <div class="col-6" style="border-right: 1px solid black;">
             <div class="dropzone" DragAndDrop (fileDropped)="onFileDropped($event)">
@@ -69,7 +69,7 @@
     </div>
 </div>
 <div mat-dialog-actions align="end">
-    <button mat-raised-button class="btn-p" color="primary"
+    <button mat-raised-button class="btn-p" color="primary" [disabled]="saveBtnDisabled"
             (click)="onClickSaveUploads()">{{COMMON_MESSAGES.SAVE_BUTTON_TEXT}}</button>
     <button mat-button [mat-dialog-close]="false">{{COMMON_MESSAGES.CANCEL_BUTTON_TEXT}}</button>
 </div>

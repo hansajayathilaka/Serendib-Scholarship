@@ -78,7 +78,9 @@ export class AddEditSponsorComponent implements OnInit {
 
             this.sponsorForm.controls['MonthlyPayment'].setValue(this.data.sponsor.MonthlyPayment);
             this.sponsorForm.controls['PaymentFrequency'].setValue(this.data.sponsor.PaymentFrequency);
-            this.sponsorForm.controls['LastPaymentDate'].setValue((this.data.sponsor.LastPaymentDate as Timestamp).toDate());
+            try {
+                this.sponsorForm.controls['LastPaymentDate'].setValue((this.data.sponsor.LastPaymentDate as Timestamp).toDate());
+            } catch (e) { }
             this.sponsorForm.controls['LastPaymentAmount'].setValue(this.data.sponsor.LastPaymentAmount);
             this.sponsorForm.controls['Notes'].setValue(this.data.sponsor.Notes);
         } else {

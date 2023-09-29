@@ -32,14 +32,14 @@ export class ActionMenuComponent implements OnInit {
             action: "onClickEdit"
         },
         {
-            actionText: Common.ATTACHMENTS,
-            iconName: 'upload',
-            action: "onClickUpload"
-        },
-        {
             actionText: Common.VIEW,
             iconName: 'visibility',
             action: "onClickView"
+        },
+        {
+            actionText: Common.ATTACHMENTS,
+            iconName: 'upload',
+            action: "onClickUpload"
         },
         {
             actionText: Common.DELETE_BUTTON_TEXT,
@@ -53,16 +53,9 @@ export class ActionMenuComponent implements OnInit {
 
     onClickEdit(): void {
         const dialogRef = this.matDialog.open(AddEditSponsorComponent, {
-            width: '800px'
-        });
-        dialogRef.afterClosed().subscribe(result => {
-            console.log(`Dialog result: ${result}`);
-        });
-    }
-
-    onClickUpload(): void {
-        const dialogRef = this.matDialog.open(FileUploadComponent, {
-            width: '800px'
+            width: '800px',
+            height: '500px',
+            data: {sponsor: this.data, mode: 1}
         });
         dialogRef.afterClosed().subscribe(result => {
             console.log(`Dialog result: ${result}`);
@@ -74,6 +67,16 @@ export class ActionMenuComponent implements OnInit {
             width: '800px',
             height: '500px',
             data: {sponsor: this.data, mode: 0}
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            console.log(`Dialog result: ${result}`);
+        });
+    }
+
+    onClickUpload(): void {
+        const dialogRef = this.matDialog.open(FileUploadComponent, {
+            width: '800px',
+            data: this.data,
         });
         dialogRef.afterClosed().subscribe(result => {
             console.log(`Dialog result: ${result}`);

@@ -30,7 +30,7 @@ export class StudentsService {
         const studentsRef = collection(this.firestore, 'Students') as CollectionReference<Student>;
         const q1 = query(studentsRef, where('_Deleted', '==', false), where('IsActive', '==', true));
         const $students = collectionData(q1, {idField: '_ID'}) as Observable<Student[]>;
-        const $sponsors = this.sponsorsService.getAllSponsors();
+        const $sponsors = this.sponsorsService.getAllSponsorsWithoutFilter();
         return combineLatest([$students, $sponsors]).pipe(
             map(([students, sponsors]): Student[] => {
                 for (let student of students) {
@@ -43,7 +43,7 @@ export class StudentsService {
         );
     }
 
-    getAllStudentsDebug() {
+    getAllStudentsWithoutFilter() {
         const studentsRef = collection(this.firestore, 'Students');
         const q1 = query(studentsRef);
         return collectionData(q1, {idField: '_ID'}) as Observable<Student[]>;

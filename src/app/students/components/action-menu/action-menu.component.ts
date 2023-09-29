@@ -55,7 +55,7 @@ export class ActionMenuComponent implements OnInit {
         const dialogRef = this.matDialog.open(AddEditStudentComponent, {
             width: '800px',
             height: '500px',
-            data: {student: this.data, edit: 1}
+            data: {student: this.data, mode: 1}
         });
         dialogRef.afterClosed().subscribe(result => {
             console.log(`Dialog result: ${result}`);
@@ -75,8 +75,8 @@ export class ActionMenuComponent implements OnInit {
 
     onClickUpload(): void {
         const dialogRef = this.matDialog.open(FileUploadComponent, {
-            width: '500px',
-            height: '500px'
+            width: '800px',
+            data: this.data,
         });
         dialogRef.afterClosed().subscribe(result => {
             console.log(`Dialog result: ${result}`);

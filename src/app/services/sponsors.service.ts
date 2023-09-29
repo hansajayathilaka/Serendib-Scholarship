@@ -30,7 +30,7 @@ export class SponsorsService {
         return collectionData(q1, {idField: '_ID'}) as Observable<Sponsor[]>;
     }
 
-    getAllSponsorsDebug() {
+    getAllSponsorsWithoutFilter() {
         const sponsorsRef = collection(this.firestore, 'Sponsors');
         const q1 = query(sponsorsRef);
         return collectionData(q1, {idField: '_ID'}) as Observable<Sponsor[]>;
