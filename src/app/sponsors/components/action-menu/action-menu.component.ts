@@ -84,7 +84,6 @@ export class ActionMenuComponent implements OnInit {
     }
 
     onClickDelete(): void {
-        debugger;
         const dialogRef = this.matDialog.open(DeleteConfirmPopupComponent, {
             width: '350px',
             data: {
@@ -95,7 +94,6 @@ export class ActionMenuComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            debugger;
             if (result) {
                 this.sponsorsService.deleteSponsor(this.data).then(() => {
                     this.helperService.openSnackBar({

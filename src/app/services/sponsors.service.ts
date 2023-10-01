@@ -81,7 +81,6 @@ export class SponsorsService {
     }
 
     async deleteSponsor(sponsor: Sponsor): Promise<FnResponse> {
-        debugger;
         try {
             if (!sponsor._ID) {
                 throw new Error("Sponsor ID is missing");
@@ -105,10 +104,9 @@ export class SponsorsService {
         }
     }
 
-    getRef(sponsor?: Sponsor) {
-        debugger
-        if (!sponsor) {
-            return doc(this.firestore, `Sponsors/`) as DocumentReference<Sponsor>;
+    getRef(sponsor?: Sponsor | "NONE") {
+        if (sponsor === "NONE" || !sponsor) {
+            return doc(this.firestore, `Sponsors/NONE`) as DocumentReference<Sponsor>;
         }
         return doc(this.firestore, `Sponsors/${sponsor._ID}`) as DocumentReference<Sponsor>;
     }

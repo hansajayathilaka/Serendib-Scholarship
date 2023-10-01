@@ -67,7 +67,6 @@ export class SignupComponent implements OnInit {
     onSubmit() {
         this.isLoading = true;
         this.isSubmitted = true;
-        debugger
         if (this.passwordForm.valid) {
             if (this.passwordForm.controls['newPassword'].value !== this.passwordForm.controls['confirmPassword'].value) {
                 this.passwordForm.controls['confirmPassword'].setErrors({notMatch: true});

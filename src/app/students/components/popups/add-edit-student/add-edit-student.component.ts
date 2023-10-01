@@ -100,10 +100,13 @@ export class AddEditStudentComponent implements OnInit {
         this.subscriptions.push(this.sponsorsService.getAllSponsors().subscribe(data => {
             if (data !== undefined) {
                 this.sponsors = data;
-                debugger;
                 if (this.data.student._Sponsor) {
                     const _sponsor = this.sponsors.find(s => String(s._ID) == this.data.student._Sponsor?.id);
-                    this.studentForm.controls['Sponsor'].setValue(_sponsor);
+                    if (_sponsor && String(_sponsor._ID) === 'NONE' || !_sponsor) {
+                        this.studentForm.controls['Sponsor'].setValue('NONE');
+                    } else {
+                        this.studentForm.controls['Sponsor'].setValue(_sponsor);
+                    }
                 }
             }
         }));
@@ -144,7 +147,6 @@ export class AddEditStudentComponent implements OnInit {
             this.dialogRef.close();
 
             if (this.data.mode == 1) {
-                debugger;
                 student._ID = this.data.student._ID;
                 this.studentsService.updateStudent(student).then(r => {
                     if (!r.status) {
@@ -162,7 +164,6 @@ export class AddEditStudentComponent implements OnInit {
             } else {
                 this.studentsService.createStudent(student).then(r => {
                     if (!r.status) {
-                        debugger;
                         this.helperService.openSnackBar({
                             text: r.message,
                             status: SnackBarStatus.FAILED

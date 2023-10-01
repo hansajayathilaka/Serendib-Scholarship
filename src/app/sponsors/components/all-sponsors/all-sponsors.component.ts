@@ -50,7 +50,6 @@ export class AllSponsorsComponent implements OnInit {
         // this.store.dispatch(new GetAllSponsors());
         // this.subscriptions.push(this.store.select(SponsorState.sponsors).subscribe(data => {
         this.subscriptions.push(this.sponsorService.getAllSponsors().subscribe(data => {
-            debugger;
             if (data === undefined) {
                 this.isLoading = true;
             } else {

@@ -33,7 +33,6 @@ export class ProjectService {
     }
 
     GetAllProjects(): Observable<Project[]> {
-        // debugger;
         const projectRef = collection(this.firestore, 'Projects');
         const q1 = query(projectRef, where('IsActive', '==', true));
 
@@ -65,7 +64,6 @@ export class ProjectService {
             }
         } catch (err) {
             console.error(err);
-            debugger;
         }
 
         // Handle Tag reference
@@ -95,7 +93,6 @@ export class ProjectService {
     }
 
     public UpdateProject(data: Project) {
-        debugger;
         const projectId = data.ID;
         const _data: any = data;
         delete _data.ID;
@@ -107,7 +104,6 @@ export class ProjectService {
         delete _data.Tag;
 
         const projectRef = doc(this.firestore, `Projects/${projectId}`);
-        debugger;
         return setDoc(projectRef, _data).then((doc) => {
             console.log(doc);
             return {
@@ -126,7 +122,6 @@ export class ProjectService {
     }
 
     public async DeleteProject(projectID: string): Promise<FnResponse> {
-        debugger;
         const deleteProject = httpsCallable<{ projectID: string }, FnResponse>(this.functions, 'deleteProject');
         const res = await deleteProject({projectID});
         return res.data;

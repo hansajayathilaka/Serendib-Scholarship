@@ -119,6 +119,7 @@
                     <mat-form-field appearance="fill" class="w-100">
                         <mat-label>{{STUDENT_MESSAGES.SPONSOR}}</mat-label>
                         <mat-select formControlName="Sponsor">
+                            <mat-option value="NONE">No Sponsor</mat-option>
                             <mat-option *ngFor="let sponsor of sponsors" [value]="sponsor">
                                 {{sponsor.Name.First + ' ' + sponsor.Name.Middle + ' ' + sponsor.Name.Last}}
                             </mat-option>

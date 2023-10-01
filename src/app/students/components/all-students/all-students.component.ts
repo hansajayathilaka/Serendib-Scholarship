@@ -49,7 +49,6 @@ export class AllStudentsComponent implements OnInit {
 
     async ngOnInit() {
         this.subscriptions.push(this.studentsService.getAllStudents().subscribe(data => {
-            debugger;
             if (data === undefined) {
                 this.isLoading = true;
             } else {
@@ -71,6 +70,9 @@ export class AllStudentsComponent implements OnInit {
     }
 
     onClickSponsor(sponsor: Sponsor) {
+        if (String(sponsor._ID) === 'NONE') {
+            return;
+        }
         const dialogRef = this.matDialog.open(AddEditSponsorComponent, {
             width: '800px',
             height: '500px',

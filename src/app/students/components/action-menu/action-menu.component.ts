@@ -94,7 +94,6 @@ export class ActionMenuComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            debugger;
             if (result) {
                 this.studentsService.deleteStudent(this.data).then(() => {
                     this.helperService.openSnackBar({

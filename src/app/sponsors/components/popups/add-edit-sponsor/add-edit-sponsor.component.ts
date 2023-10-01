@@ -60,7 +60,6 @@ export class AddEditSponsorComponent implements OnInit {
 
 
     ngOnInit(): void {
-        debugger;
         if (this.data.mode == 1 || this.data.mode == 0) {
             this.TITLE = this.SPONSOR_MESSAGES.EDIT;
             this.sponsorForm.controls['ID'].setValue(this.data.sponsor.ID);
@@ -143,7 +142,6 @@ export class AddEditSponsorComponent implements OnInit {
             } else {
                 this.sponsorsService.createSponsor(sponsor).then(r => {
                     if (!r.status) {
-                        debugger;
                         this.helperService.openSnackBar({
                             text: r.message,
                             status: SnackBarStatus.FAILED

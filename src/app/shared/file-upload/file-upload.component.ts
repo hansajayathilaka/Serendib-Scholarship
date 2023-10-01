@@ -45,7 +45,6 @@ export class FileUploadComponent implements OnInit {
      * on file drop handler
      */
     onFileDropped($event: any) {
-        debugger
         this.prepareFilesList($event);
     }
 
@@ -53,7 +52,6 @@ export class FileUploadComponent implements OnInit {
      * handle file from browsing
      */
     fileBrowseHandler(files: any) {
-        debugger
         this.prepareFilesList(files.files);
     }
 
@@ -105,7 +103,6 @@ export class FileUploadComponent implements OnInit {
     }
 
     uploadFilesSimulator(index: number) {
-        debugger;
         setTimeout(() => {
             if (index === this.files.length) {
                 return;

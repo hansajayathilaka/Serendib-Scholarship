@@ -22,11 +22,9 @@ export class FirebaseStorageService {
     }
 
     async uploadFile(file: File, filePath: string): Promise<FnResponse> {
-        debugger
         const id = uuidv4();
         const ext = file.name.split('.').pop();
         let uniqueFileName: string;
-        debugger;
         if (ext) {
             uniqueFileName = `${id}.${ext}`;
         } else {
@@ -94,7 +92,6 @@ export class FirebaseStorageService {
         try {
             const fileName = fileRef.name;
             const downloadUrl = await getDownloadURL(fileRef);
-            debugger;
             return {
                 status: true,
                 message: 'File download URL retrieved successfully.',
