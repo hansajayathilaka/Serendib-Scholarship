@@ -106,6 +106,8 @@ export interface Sponsor {
 
     IsActive: boolean;
     _Deleted: boolean;
+
+    Students?: Student[];
 }
 
 export interface Student {

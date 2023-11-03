@@ -11,9 +11,8 @@ import {
     where
 } from "@angular/fire/firestore";
 import {CollectionReference} from "@firebase/firestore";
-import {FnResponse, Student} from "../types";
+import {FnResponse, Sponsor, Student} from "../types";
 import {combineLatest, map, Observable} from "rxjs";
-import {SponsorsService} from "./sponsors.service";
 
 @Injectable({
     providedIn: 'root'
@@ -22,15 +21,18 @@ export class StudentsService {
 
     constructor(
         private firestore: Firestore,
-        private sponsorsService: SponsorsService,
     ) {
     }
 
     getAllStudents() {
         const studentsRef = collection(this.firestore, 'Students') as CollectionReference<Student>;
-        const q1 = query(studentsRef, where('_Deleted', '==', false), where('IsActive', '==', true));
-        const $students = collectionData(q1, {idField: '_ID'}) as Observable<Student[]>;
-        const $sponsors = this.sponsorsService.getAllSponsorsWithoutFilter();
+        const q1Student = query(studentsRef, where('_Deleted', '==', false), where('IsActive', '==', true));
+        const $students = collectionData(q1Student, {idField: '_ID'}) as Observable<Student[]>;
+
+        const sponsorsRef = collection(this.firestore, 'Sponsors') as CollectionReference<Sponsor>;
+        const q1Sponsors = query(sponsorsRef);
+        const $sponsors = collectionData(q1Sponsors, {idField: '_ID'}) as Observable<Sponsor[]>;
+
         return combineLatest([$students, $sponsors]).pipe(
             map(([students, sponsors]): Student[] => {
                 for (let student of students) {
@@ -42,6 +44,8 @@ export class StudentsService {
             })
         );
     }
+
+
 
     getAllStudentsWithoutFilter() {
         const studentsRef = collection(this.firestore, 'Students');

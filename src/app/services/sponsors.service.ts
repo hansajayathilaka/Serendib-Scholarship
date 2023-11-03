@@ -12,7 +12,8 @@ import {
 } from "@angular/fire/firestore";
 import {FnResponse, Sponsor} from "../types";
 import {CollectionReference, DocumentReference} from "@firebase/firestore";
-import {Observable} from "rxjs";
+import {combineLatest, first, firstValueFrom, map, Observable} from "rxjs";
+import {StudentsService} from "./students.service";
 
 @Injectable({
     providedIn: 'root'
@@ -21,19 +22,35 @@ export class SponsorsService {
 
     constructor(
         private firestore: Firestore,
+        private studentsService: StudentsService,
     ) {
     }
 
     getAllSponsors() {
         const sponsorsRef = collection(this.firestore, 'Sponsors') as CollectionReference<Sponsor>;
         const q1 = query(sponsorsRef, where('_Deleted', '==', false), where('IsActive', '==', true));
-        return collectionData(q1, {idField: '_ID'}) as Observable<Sponsor[]>;
-    }
+        const $sponsors = collectionData(q1, {idField: '_ID'}) as Observable<Sponsor[]>;
 
-    getAllSponsorsWithoutFilter() {
-        const sponsorsRef = collection(this.firestore, 'Sponsors');
-        const q1 = query(sponsorsRef);
-        return collectionData(q1, {idField: '_ID'}) as Observable<Sponsor[]>;
+        const $students = this.studentsService.getAllStudents();
+
+        return combineLatest([$sponsors, $students]).pipe(
+            map(([sponsors, students]): Sponsor[] => {
+                students.forEach((student) => {
+                    if (student.Sponsor) {
+                        const sponsor = sponsors.find(sponsor => String(sponsor._ID) === String(student.Sponsor?._ID));
+                        if (sponsor) {
+                            if (sponsor.Students == undefined) {
+                                sponsor.Students = [];
+                            }
+                            sponsor.Students.push(student);
+                        }
+                    }
+                });
+                debugger
+                return sponsors;
+            })
+        );
+
     }
 
     async createSponsor(sponsor: Sponsor): Promise<FnResponse> {
