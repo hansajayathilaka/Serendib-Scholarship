@@ -46,7 +46,6 @@ export class SponsorsService {
                         }
                     }
                 });
-                debugger
                 return sponsors;
             })
         );
