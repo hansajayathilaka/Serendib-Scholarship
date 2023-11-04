@@ -7,13 +7,15 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { ActionMenuComponent } from './components/action-menu/action-menu.component';
 import { MaterialModule } from "../app.material.module";
+import { StudentListComponent } from './components/popups/student-list/student-list.component';
 
 
 @NgModule({
     declarations: [
         AllSponsorsComponent,
         AddEditSponsorComponent,
-        ActionMenuComponent
+        ActionMenuComponent,
+        StudentListComponent
     ],
     imports: [
         CommonModule,

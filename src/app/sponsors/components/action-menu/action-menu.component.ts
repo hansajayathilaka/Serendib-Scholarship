@@ -8,6 +8,7 @@ import {DeleteConfirmPopupComponent} from "../../../shared/delete-confirm-popup/
 import {AddEditSponsorComponent} from "../popups/add-edit-sponsor/add-edit-sponsor.component";
 import {SponsorsService} from "../../../services/sponsors.service";
 import { FileUploadComponent } from "../../../shared/file-upload/file-upload.component";
+import { StudentListComponent } from "../popups/student-list/student-list.component";
 
 @Component({
   selector: 'app-action-menu',
@@ -37,6 +38,11 @@ export class ActionMenuComponent implements OnInit {
             action: "onClickView"
         },
         {
+            actionText: Common.STUDENTS,
+            iconName: 'supervisor_account',
+            action: "onClickViewStudents"
+        },
+        {
             actionText: Common.ATTACHMENTS,
             iconName: 'upload',
             action: "onClickUpload"
@@ -59,6 +65,12 @@ export class ActionMenuComponent implements OnInit {
         });
         dialogRef.afterClosed().subscribe(result => {
             console.log(`Dialog result: ${result}`);
+        });
+    }
+
+    onClickViewStudents(): void {
+        this.matDialog.open(StudentListComponent, {
+            data: this.data.Students
         });
     }
 

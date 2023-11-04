@@ -9,6 +9,12 @@
                         <input formControlName="ID" matInput>
                     </mat-form-field>
                 </div>
+                <div class="col-6">
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>{{STUDENT_MESSAGES.EMAIL}}</mat-label>
+                        <input formControlName="Email" matInput type="email">
+                    </mat-form-field>
+                </div>
             </div>
             <div class="row w-100 mx-0">
                 <div class="col-6">
@@ -23,18 +29,13 @@
                         <input formControlName="MiddleName" matInput>
                     </mat-form-field>
                 </div>
-                <div class="col-6">
-                    <mat-form-field appearance="fill" class="w-100">
-                        <mat-label>{{NAME_MESSAGES.LAST}}</mat-label>
-                        <input formControlName="LastName" matInput>
-                    </mat-form-field>
-                </div>
+
             </div>
             <div class="row w-100 mx-0">
                 <div class="col-6">
                     <mat-form-field appearance="fill" class="w-100">
-                        <mat-label>{{STUDENT_MESSAGES.EMAIL}}</mat-label>
-                        <input formControlName="Email" matInput type="email">
+                        <mat-label>{{NAME_MESSAGES.LAST}}</mat-label>
+                        <input formControlName="LastName" matInput>
                     </mat-form-field>
                 </div>
                 <div class="col-6">
@@ -111,6 +112,14 @@
                 </div>
                 <div class="col-6">
                     <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>{{STUDENT_MESSAGES.END_DATE}}</mat-label>
+                        <input formControlName="StartDate" matInput [matDatepicker]="picker">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field appearance="fill" class="w-100">
                         <mat-label>{{STUDENT_MESSAGES.STUDENTS_STUDY_YEAR}}</mat-label>
                         <input formControlName="StudentsStudyYear" matInput>
                     </mat-form-field>
@@ -126,9 +135,9 @@
                         </mat-select>
                     </mat-form-field>
                 </div>
-                <div class="col-12">
+                <div class="col-6">
                     <mat-form-field appearance="fill" class="w-100">
-                        <mat-label>{{STUDENT_MESSAGES.SPONSOR}}</mat-label>
+                        <mat-label>{{STUDENT_MESSAGES.NOTES}}</mat-label>
                         <textarea formControlName="Notes" matInput></textarea>
                     </mat-form-field>
                 </div>

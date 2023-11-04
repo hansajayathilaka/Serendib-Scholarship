@@ -90,11 +90,11 @@ export class AddEditStudentComponent implements OnInit {
         ZipCode: this.formBuilder.control(''),
         Country: this.formBuilder.control(''),
         Notes: this.formBuilder.control(''),
-
         Institute: this.formBuilder.control(''),
         Course: this.formBuilder.control(''),
         CourseDuration: this.formBuilder.control(''),
         StartDate: this.formBuilder.control(''),
+        ExpectedCompletionDate: this.formBuilder.control(''),
         StudentsStudyYear: this.formBuilder.control(''),
         Sponsor: this.formBuilder.control(''),
     });
@@ -118,6 +118,7 @@ export class AddEditStudentComponent implements OnInit {
             this.studentForm.controls['Institute'].setValue(this.data.student.Institute);
             this.studentForm.controls['Course'].setValue(this.data.student.Course);
             this.studentForm.controls['CourseDuration'].setValue(this.data.student.CourseDuration);
+            this.studentForm.controls['ExpectedCompletionDate'].setValue((this.data.student.ExpectedCompletionDate as Timestamp).toDate());
             try{
                 this.studentForm.controls['StartDate'].setValue((this.data.student.StartDate as Timestamp).toDate());
             } catch (e) { }
@@ -173,6 +174,7 @@ export class AddEditStudentComponent implements OnInit {
                 Course: this.studentForm.value.Course ?? "",
                 CourseDuration: this.studentForm.value.CourseDuration ?? "",
                 StartDate: this.studentForm.value.StartDate ?? "",
+                ExpectedCompletionDate: this.studentForm.value.ExpectedCompletionDate ?? "",
                 StudentsStudyYear: this.studentForm.value.StudentsStudyYear ?? "",
                 _Sponsor: this.studentForm.value.Sponsor ? this.sponsorsService.getRef(this.studentForm.value.Sponsor) : this.sponsorsService.getRef(),
 

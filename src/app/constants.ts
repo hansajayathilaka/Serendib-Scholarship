@@ -33,12 +33,14 @@ export class Common {
     public static readonly PAGE_NOT_FOUND = 'Page Not Found';
     public static readonly EDIT = 'Edit';
     public static readonly VIEW = 'View';
+    public static readonly STUDENTS = 'View Students';
     public static readonly ATTACHMENTS = 'Attachments';
     public static readonly DELETE_BUTTON_TEXT = 'Delete';
     public static readonly WARNING_TITLE = 'Warning';
     public static readonly UPLOAD_TITLE = 'Upload Files';
     public static readonly YES_BUTTON_TEXT = 'Yes';
     public static readonly NO_BUTTON_TEXT = 'No';
+    public static readonly OK_BUTTON_TEXT = 'OK';
 
 }
 
@@ -157,6 +159,7 @@ export class Sponsors {
     public static readonly ADDED_SUCCESS = "Sponsor Created Successfully";
     public static readonly UPDATED_SUCCESS = "Sponsor Updated Successfully";
     public static readonly DELETED_SUCCESS = "Sponsor Deleted Successfully";
+    public static readonly STUDENT_LIST = "Student List";
 }
 
 export class Students {
@@ -168,10 +171,12 @@ export class Students {
     public static readonly CONTACT_NUMBER = "Contact Number";
     public static readonly ADDRESS = "Address";
     public static readonly EMAIL = "Email";
+    public static readonly NOTES = "Notes";
     public static readonly INSTITUTE = "Institution";
     public static readonly COURSE = "Course";
     public static readonly COURSE_DURATION = "Course Duration";
     public static readonly START_DATE = "Start Date";
+    public static readonly END_DATE = "Expected Completion Date";
     public static readonly STUDENTS_STUDY_YEAR = "Students Study Year";
     public static readonly SPONSOR = "Sponsor";
     public static readonly DELETE_CONFIRM = "Are you want to delete this student?";
