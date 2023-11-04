@@ -130,8 +130,8 @@ export class Names {
 }
 
 export class Address {
-    public static readonly ADDRESS1 = "Address 1";
-    public static readonly ADDRESS2 = "Address 2";
+    public static readonly ADDRESS1 = "Address Line 1";
+    public static readonly ADDRESS2 = "Address Line 2";
     public static readonly CITY = "City";
     public static readonly STATE = "State";
     public static readonly ZIP_CODE = "Zip Code";
@@ -168,7 +168,7 @@ export class Students {
     public static readonly CONTACT_NUMBER = "Contact Number";
     public static readonly ADDRESS = "Address";
     public static readonly EMAIL = "Email";
-    public static readonly INSTITUTE = "Institute";
+    public static readonly INSTITUTE = "Institution";
     public static readonly COURSE = "Course";
     public static readonly COURSE_DURATION = "Course Duration";
     public static readonly START_DATE = "Start Date";

@@ -10,10 +10,45 @@ import { SponsorsService } from "../../../../services/sponsors.service";
 import firebase from "firebase/compat";
 import Timestamp = firebase.firestore.Timestamp;
 
+import * as _moment from 'moment';
+// tslint:disable-next-line:no-duplicate-imports
+// @ts-ignore
+import {default as _rollupMoment} from 'moment';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/material/core";
+import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from "@angular/material-moment-adapter";
+
+const moment = _rollupMoment || _moment;
+
+// See the Moment.js docs for the meaning of these formats:
+// https://momentjs.com/docs/#/displaying/format/
+export const MY_FORMATS = {
+    parse: {
+        dateInput: 'LL',
+    },
+    display: {
+        dateInput: 'DD MMMM YYYY',
+        monthYearLabel: 'YYYY',
+        dateA11yLabel: 'LL',
+        monthYearA11yLabel: 'YYYY',
+    },
+};
+
 @Component({
     selector: 'app-add-edit-student',
     templateUrl: './add-edit-student.component.html',
-    styleUrls: ['./add-edit-student.component.scss']
+    styleUrls: ['./add-edit-student.component.scss'],
+    providers: [
+        // `MomentDateAdapter` can be automatically provided by importing `MomentDateModule` in your
+        // application's root module. We provide it at the component level here, due to limitations of
+        // our example generation script.
+        {
+            provide: DateAdapter,
+            useClass: MomentDateAdapter,
+            deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
+        },
+
+        {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+    ],
 })
 export class AddEditStudentComponent implements OnInit {
 
@@ -36,7 +71,6 @@ export class AddEditStudentComponent implements OnInit {
         private helperService: HelperService,
         private studentsService: StudentsService,
         private sponsorsService: SponsorsService,
-        // private store: Store,
         private dialogRef: MatDialogRef<AddEditStudentComponent>,
         @Inject(MAT_DIALOG_DATA) public data: { student: Student, mode: number }
     ) {
