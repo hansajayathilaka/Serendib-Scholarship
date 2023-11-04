@@ -89,6 +89,7 @@ export class AddEditStudentComponent implements OnInit {
         State: this.formBuilder.control(''),
         ZipCode: this.formBuilder.control(''),
         Country: this.formBuilder.control(''),
+        Notes: this.formBuilder.control(''),
 
         Institute: this.formBuilder.control(''),
         Course: this.formBuilder.control(''),
@@ -113,7 +114,7 @@ export class AddEditStudentComponent implements OnInit {
             this.studentForm.controls['State'].setValue(this.data.student.Address.State);
             this.studentForm.controls['ZipCode'].setValue(this.data.student.Address.ZipCode);
             this.studentForm.controls['Country'].setValue(this.data.student.Address.Country);
-
+            this.studentForm.controls['Notes'].setValue(this.data.student.Notes);
             this.studentForm.controls['Institute'].setValue(this.data.student.Institute);
             this.studentForm.controls['Course'].setValue(this.data.student.Course);
             this.studentForm.controls['CourseDuration'].setValue(this.data.student.CourseDuration);
@@ -167,6 +168,7 @@ export class AddEditStudentComponent implements OnInit {
                     ZipCode: this.studentForm.value.ZipCode ?? "",
                     Country: this.studentForm.value.Country ?? ""
                 },
+                Notes: this.studentForm.value.Notes ?? "",
                 Institute: this.studentForm.value.Institute ?? "",
                 Course: this.studentForm.value.Course ?? "",
                 CourseDuration: this.studentForm.value.CourseDuration ?? "",

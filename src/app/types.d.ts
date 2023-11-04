@@ -115,7 +115,7 @@ export interface Student {
     Address: Address;
     Email: string;
     Phone: string;
-
+    Notes: string;
     Institute: string;
     Course: string;
     CourseDuration: string;
