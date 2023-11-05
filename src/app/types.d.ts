@@ -122,6 +122,8 @@ export interface Student {
     Course: string;
     CourseDuration: string;
     StartDate: Date | Timestamp;
+    StandingOrderNumber: string;
+    ScholarshipStartDate: Date | Timestamp;
     ExpectedCompletionDate: Date | Timestamp;
     StudentsStudyYear: string;
     _Sponsor?: DocumentReference<Sponsor>;

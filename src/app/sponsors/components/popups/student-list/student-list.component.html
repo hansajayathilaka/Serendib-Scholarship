@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>{{TITLE}}</h2>
+<mat-card-content style="max-height: fit-content">
+    <mat-list role="list">
+        <mat-list-item style="font-weight: bolder;">
+            # &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ID &nbsp; &nbsp; &nbsp; &nbsp;   &nbsp;&nbsp; &nbsp; Name
+        </mat-list-item>
+        <mat-list-item role="listitem" *ngFor="let student of data; index as i">
+            {{i+1 + '. '}} &nbsp; &nbsp; &nbsp; &nbsp; {{student.ID}} &nbsp; &nbsp; &nbsp; &nbsp;  {{" " + student.Name.First + ' ' + student.Name.Middle + ' ' + student.Name.Last}}
+        </mat-list-item>
+    </mat-list>
+</mat-card-content>
+<mat-dialog-actions>
+    <div class="row w-100 mx-0 align-items-center justify-content-end">
+        <div class="d-flex justify-content-end">
+            <button class="btn-p" color="primary" mat-raised-button [mat-dialog-close]="true">
+                <mat-icon>done</mat-icon>
+                {{COMMON_MESSAGES.OK_BUTTON_TEXT}}
+            </button>
+        </div>
+    </div>
+</mat-dialog-actions>

@@ -88,8 +88,10 @@ export class AddEditStudentComponent implements OnInit {
         City: this.formBuilder.control(''),
         State: this.formBuilder.control(''),
         ZipCode: this.formBuilder.control(''),
+        StandingOrderNumber: this.formBuilder.control(''),
         Country: this.formBuilder.control(''),
         Notes: this.formBuilder.control(''),
+        ScholarshipStartDate: this.formBuilder.control(''),
         Institute: this.formBuilder.control(''),
         Course: this.formBuilder.control(''),
         CourseDuration: this.formBuilder.control(''),
@@ -113,6 +115,8 @@ export class AddEditStudentComponent implements OnInit {
             this.studentForm.controls['City'].setValue(this.data.student.Address.City);
             this.studentForm.controls['State'].setValue(this.data.student.Address.State);
             this.studentForm.controls['ZipCode'].setValue(this.data.student.Address.ZipCode);
+            this.studentForm.controls['StandingOrderNumber'].setValue(this.data.student.StandingOrderNumber);
+            this.studentForm.controls['ScholarshipStartDate'].setValue((this.data.student.ScholarshipStartDate as Timestamp).toDate());
             this.studentForm.controls['Country'].setValue(this.data.student.Address.Country);
             this.studentForm.controls['Notes'].setValue(this.data.student.Notes);
             this.studentForm.controls['Institute'].setValue(this.data.student.Institute);
@@ -172,6 +176,8 @@ export class AddEditStudentComponent implements OnInit {
                 Notes: this.studentForm.value.Notes ?? "",
                 Institute: this.studentForm.value.Institute ?? "",
                 Course: this.studentForm.value.Course ?? "",
+                StandingOrderNumber: this.studentForm.value.StandingOrderNumber ?? "",
+                ScholarshipStartDate: this.studentForm.value.ScholarshipStartDate ?? "",
                 CourseDuration: this.studentForm.value.CourseDuration ?? "",
                 StartDate: this.studentForm.value.StartDate ?? "",
                 ExpectedCompletionDate: this.studentForm.value.ExpectedCompletionDate ?? "",

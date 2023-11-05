@@ -175,6 +175,8 @@ export class Students {
     public static readonly INSTITUTE = "Institution";
     public static readonly COURSE = "Course";
     public static readonly COURSE_DURATION = "Course Duration";
+    public static readonly STANDING_ORDER_NUMBER = "Standing Order Number";
+    public static readonly SCHOL_START_DATE = "Scholarship Start Date";
     public static readonly START_DATE = "Start Date";
     public static readonly END_DATE = "Expected Completion Date";
     public static readonly STUDENTS_STUDY_YEAR = "Students Study Year";
