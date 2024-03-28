@@ -1,0 +1,215 @@
+<mat-card class="mx-3" style="margin-bottom: 70px; min-width: fit-content;">
+    <mat-card-content>
+        <div class="row">
+            <div class="col-10">
+                <form [formGroup]="studentForm">
+                    <div class="w-100">
+                        <div class="row w-100 mx-0">
+                            <div class="col-6">
+                                <mat-form-field appearance="fill" class="w-100">
+                                    <mat-label>{{ STUDENT_MESSAGES.ID }}</mat-label>
+                                    <input formControlName="ID" matInput>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-6">
+                                <mat-form-field appearance="fill" class="w-100">
+                                    <mat-label>{{ STUDENT_MESSAGES.EMAIL }}</mat-label>
+                                    <input formControlName="Email" matInput type="email">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row w-100 mx-0">
+                            <div class="col-6">
+                                <mat-form-field appearance="fill" class="w-100">
+                                    <mat-label>{{ NAME_MESSAGES.FIRST }}</mat-label>
+                                    <input formControlName="FirstName" matInput>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-6">
+                                <mat-form-field appearance="fill" class="w-100">
+                                    <mat-label>{{ NAME_MESSAGES.MIDDLE }}</mat-label>
+                                    <input formControlName="MiddleName" matInput>
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+                        <div class="row w-100 mx-0">
+                            <div class="col-6">
+                                <mat-form-field appearance="fill" class="w-100">
+                                    <mat-label>{{ NAME_MESSAGES.LAST }}</mat-label>
+                                    <input formControlName="LastName" matInput>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-6">
+                                <mat-form-field appearance="fill" class="w-100">
+                                    <mat-label>{{ STUDENT_MESSAGES.CONTACT_NUMBER }}</mat-label>
+                                    <textarea formControlName="ContactNumber" matInput
+                                              placeholder="Enter one contact number per line"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row w-100 mx-0">
+                            <div class="col-6">
+                                <mat-form-field appearance="fill" class="w-100">
+                                    <mat-label>{{ ADDRESS_MESSAGES.ADDRESS1 }}</mat-label>
+                                    <input formControlName="Address1" matInput>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-6">
+                                <mat-form-field appearance="fill" class="w-100">
+                                    <mat-label>{{ ADDRESS_MESSAGES.ADDRESS2 }}</mat-label>
+                                    <input formControlName="Address2" matInput>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row w-100 mx-0">
+                            <div class="col-6">
+                                <mat-form-field appearance="fill" class="w-100">
+                                    <mat-label>{{ ADDRESS_MESSAGES.CITY }}</mat-label>
+                                    <input formControlName="City" matInput>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-6">
+                                <mat-form-field appearance="fill" class="w-100">
+                                    <mat-label>{{ ADDRESS_MESSAGES.STATE }}</mat-label>
+                                    <input formControlName="State" matInput>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row w-100 mx-0">
+                            <div class="col-6 d-flex justify-content-between">
+                                <div style="width:49%">
+                                    <mat-form-field appearance="fill" class="w-100">
+                                        <mat-label>{{ ADDRESS_MESSAGES.ZIP_CODE }}</mat-label>
+                                        <input formControlName="ZipCode" matInput>
+                                    </mat-form-field>
+                                </div>
+                                <div style="width:49%">
+                                    <mat-form-field appearance="fill" class="w-100">
+                                        <mat-label>{{ ADDRESS_MESSAGES.COUNTRY }}</mat-label>
+                                        <input formControlName="Country" matInput>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <mat-form-field appearance="fill" class="w-100">
+                                    <mat-label>{{ STUDENT_MESSAGES.INSTITUTE }}</mat-label>
+                                    <input formControlName="Institute" matInput>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row w-100 mx-0">
+
+                            <div class="col-6 d-flex justify-content-between">
+                                <div style="width:49%">
+                                    <mat-form-field appearance="fill" class="w-100">
+                                        <mat-label>{{ STUDENT_MESSAGES.START_DATE }}</mat-label>
+                                        <input formControlName="StartDate" matInput [matDatepicker]="picker">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker startView="multi-year"
+                                                        (monthSelected)="setMonthAndYear($event, picker)"></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div style="width:49%">
+                                    <mat-form-field appearance="fill" class="w-100">
+                                        <mat-label>{{ STUDENT_MESSAGES.END_DATE }}</mat-label>
+                                        <input formControlName="StartDate" matInput [matDatepicker]="endPicker">
+                                        <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+                                        <mat-datepicker #endPicker startView="multi-year"
+                                                        (monthSelected)="setCompletionMonthAndYear($event, picker)"></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <mat-form-field appearance="fill" class="w-100">
+                                    <mat-label>{{ STUDENT_MESSAGES.COURSE }}</mat-label>
+                                    <input formControlName="Course" matInput>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row w-100 mx-0">
+                            <div class="col-6 d-flex justify-content-between">
+                                <div style="width:49%">
+                                    <mat-form-field appearance="fill" class="w-100">
+                                        <mat-label>{{ STUDENT_MESSAGES.SCHOL_START_DATE }}</mat-label>
+                                        <input formControlName="ScholarshipStartDate" matInput [matDatepicker]="pickerS">
+                                        <mat-datepicker-toggle matSuffix [for]="pickerS"></mat-datepicker-toggle>
+                                        <mat-datepicker #pickerS></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div style="width:49%">
+                                    <mat-form-field appearance="fill" class="w-100">
+                                        <mat-label>{{ STUDENT_MESSAGES.STUDENTS_STUDY_YEAR }}</mat-label>
+                                        <input formControlName="StudentsStudyYear" matInput>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-6 d-flex justify-content-between">
+                                <div style="width:49%">
+                                    <mat-form-field appearance="fill" class="w-100">
+                                        <mat-label>{{ STUDENT_MESSAGES.COURSE_DURATION }}</mat-label>
+                                        <input formControlName="CourseDuration" matInput>
+                                    </mat-form-field>
+                                </div>
+                                <div style="width:49%">
+                                    <mat-form-field appearance="fill" class="w-100">
+                                        <mat-label>{{ STUDENT_MESSAGES.STANDING_ORDER_NUMBER }}</mat-label>
+                                        <input formControlName="StandingOrderNumber" matInput>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row w-100 mx-0">
+                            <div class="col-6">
+                                <mat-form-field appearance="fill" class="w-100">
+                                    <mat-label>{{ STUDENT_MESSAGES.SPONSOR }}</mat-label>
+                                    <mat-select formControlName="Sponsor">
+                                        <mat-option value="NONE">No Sponsor</mat-option>
+                                        <mat-option *ngFor="let sponsor of sponsors" [value]="sponsor">
+                                            {{ sponsor.Name.First + ' ' + sponsor.Name.Middle + ' ' + sponsor.Name.Last }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-6">
+                                <mat-form-field appearance="fill" class="w-100">
+                                    <mat-label>{{ STUDENT_MESSAGES.NOTES }}</mat-label>
+                                    <textarea formControlName="Notes" matInput></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row w-100 mx-0">
+                            <div class="col-6">
+                                <mat-form-field appearance="fill" class="w-100">
+                                    <mat-label>{{ STUDENT_MESSAGES.ADDRESS }}</mat-label>
+                                    <textarea rows="4" formControlName="Address" matInput></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="col-2">
+                <div class="row w-100 mx-0 align-items-center justify-content-end">
+                    <div class="d-flex justify-content-end">
+                        <button *ngIf="mode != 0" (click)="onClickSave()" cdkFocusInitial class="btn-p" color="primary"
+                                mat-raised-button
+                                [disabled]="studentForm.invalid">
+                            <mat-icon>done</mat-icon>
+                            {{ COMMON_MESSAGES.SAVE_BUTTON_TEXT }}
+                        </button>
+                        <button [mat-dialog-close]="false" mat-button mat-dialog-close>
+                            <mat-icon>close</mat-icon>
+                            {{ COMMON_MESSAGES.CANCEL_BUTTON_TEXT }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </mat-card-content>
+</mat-card>

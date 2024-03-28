@@ -7,11 +7,11 @@ import { Sponsor, Student } from "../../../types";
 import { Subscription } from "rxjs";
 import { StudentsService } from "../../../services/students.service";
 import { MatDialog } from "@angular/material/dialog";
-import { AddEditStudentComponent } from "../popups/add-edit-student/add-edit-student.component";
 import { Router } from "@angular/router";
 import {
     AddEditSponsorComponent
 } from "../../../sponsors/components/popups/add-edit-sponsor/add-edit-sponsor.component";
+import {AddEditStudentComponent} from "../add-edit-student/add-edit-student.component";
 
 @Component({
     selector: 'app-all-students',
@@ -82,16 +82,4 @@ export class AllStudentsComponent implements OnInit {
             console.log(`Dialog result: ${result}`);
         });
     }
-
-    ngOnClickAdd(): void {
-        const dialogRef = this.matDialog.open(AddEditStudentComponent, {
-            width: '800px',
-            height: '500px',
-            data: {edit: 0}
-        });
-        dialogRef.afterClosed().subscribe(result => {
-            console.log(`Dialog result: ${result}`);
-        });
-    }
-
 }

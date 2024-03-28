@@ -10,7 +10,7 @@ import { Sponsor, Student } from "../../../../types";
 })
 export class StudentListComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Student[]) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { students: Student[], sponsor: string }) { }
   TITLE = Sponsors.STUDENT_LIST
   COMMON_MESSAGES = Common;
 

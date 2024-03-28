@@ -70,7 +70,7 @@ export class ActionMenuComponent implements OnInit {
 
     onClickViewStudents(): void {
         this.matDialog.open(StudentListComponent, {
-            data: this.data.Students
+            data: {students: this.data.Students, sponsor: this.data.Name.First + " " + this.data.Name.Last}
         });
     }
 

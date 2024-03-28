@@ -1,10 +1,11 @@
 <h2 mat-dialog-title>{{TITLE}}</h2>
+<h4 class="fw-bold">Sponsor: {{data.sponsor}}</h4>
 <mat-card-content style="max-height: fit-content">
     <mat-list role="list">
         <mat-list-item style="font-weight: bolder;">
             # &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ID &nbsp; &nbsp; &nbsp; &nbsp;   &nbsp;&nbsp; &nbsp; Name
         </mat-list-item>
-        <mat-list-item role="listitem" *ngFor="let student of data; index as i">
+        <mat-list-item role="listitem" *ngFor="let student of data.students; index as i">
             {{i+1 + '. '}} &nbsp; &nbsp; &nbsp; &nbsp; {{student.ID}} &nbsp; &nbsp; &nbsp; &nbsp;  {{" " + student.Name.First + ' ' + student.Name.Middle + ' ' + student.Name.Last}}
         </mat-list-item>
     </mat-list>
