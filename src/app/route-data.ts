@@ -30,6 +30,7 @@ export class StudentRoutes {
 export class AuthRoutes {
     public static readonly Root = 'auth'
     public static readonly Login = 'login'
+    public static readonly ForgetPassword = 'forget-password'
     public static readonly SignUp = 'signup'
     public static readonly Profile = 'me'
     public static readonly ManageUsers = {url: 'users', title: 'Manage Users'}

@@ -34,6 +34,7 @@ export class AppComponent {
                 if (event.url === `/${CustomerRoutes.Root}/${CustomerRoutes.Ep}`) {
                     this.isCustomerUrl = true;
                 }
+                this.isForgetPassword = event.url === `/${AuthRoutes.Root}/${AuthRoutes.ForgetPassword}`;
             }
         });
 
@@ -42,7 +43,9 @@ export class AppComponent {
                 this.isLoggedIn = true;
             } else {
                 this.isLoggedIn = false;
-                this.logout();
+                if (!this.isForgetPassword) {
+                    this.logout();
+                }
             }
         });
     }
@@ -52,6 +55,7 @@ export class AppComponent {
 
     navigationMenuItems = NavigationMenuItems;
 
+    isForgetPassword = false;
     isLoggedIn = false;
     isFirstLogin = false;
     name: string | null | undefined = "";

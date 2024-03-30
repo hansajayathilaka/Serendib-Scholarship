@@ -47,7 +47,10 @@ export class Common {
 export class AuthMessages {
     public static readonly LOGIN_TOKEN = 'brLoginToken';
     public static readonly LOGIN_BUTTON_TEXT = 'Login';
+    public static readonly NEXT_BUTTON_TEXT = 'Next';
     public static readonly LOGIN_TITLE = 'Login';
+    public static readonly FORGET_PASSWORD_TITLE = 'Forget Password';
+    public static readonly FORGET_PASSWORD_CONTENT = 'Before continue, we need to verify your identity. Please enter your email address';
     public static readonly PASSWORD_LABEL = 'Password';
     public static readonly EMAIL_LABEl = 'Email';
     public static readonly WRONG_CREDENTIALS_MESSAGE_TEXT = 'Incorrect email or password.';

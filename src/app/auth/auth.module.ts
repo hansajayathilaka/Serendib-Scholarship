@@ -10,6 +10,7 @@ import { UserProfileComponent } from './components/popups/user-profile/user-prof
 import { MaterialModule } from "../app.material.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgxSpinnerModule } from "ngx-spinner";
+import { ForgetPasswordEmailComponent } from './components/forget-password-email/forget-password-email.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
         SignupComponent,
         ManageUsersComponent,
         AddEditUserComponent,
-        UserProfileComponent
+        UserProfileComponent,
+        ForgetPasswordEmailComponent
     ],
     imports: [
         CommonModule,
