@@ -132,8 +132,6 @@ export interface Student {
     ExpectedCompletionDate: Date | Timestamp;
     StudentsStudyYear: string;
     PaymentRecords: string;
-
-    HasAttachments: boolean;
     Completed: boolean;
 
     _Sponsor?: DocumentReference<Sponsor>;

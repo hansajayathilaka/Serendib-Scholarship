@@ -206,8 +206,6 @@ export class AddEditStudentComponent implements OnInit {
                 StudentsStudyYear: this.studentForm.value.StudentsStudyYear ?? "",
                 _Sponsor: this.studentForm.value.Sponsor ? this.sponsorsService.getRef(this.studentForm.value.Sponsor) : this.sponsorsService.getRef(),
                 PaymentRecords: "",
-
-                HasAttachments: false,
                 Completed: false,
 
                 IsActive: true,

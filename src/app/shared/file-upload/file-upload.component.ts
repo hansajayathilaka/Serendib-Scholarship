@@ -137,9 +137,9 @@ export class FileUploadComponent implements OnInit {
                     this.reloadExistingFiles();
 
                     // Check if the this.data is Student or Sponsor
-                    if ((this.data as Student).Institute && !(this.data as Student).HasAttachments) {
+                    if ((this.data as Student).Institute && !(this.data as Student).IsAttachmentsAvailable) {
                         const student = this.data as Student;
-                        student.HasAttachments = true;
+                        student.IsAttachmentsAvailable = true;
                         this.studentService.updateStudent(this.data as Student).then((res) => {
                             console.log(res);
                         });
