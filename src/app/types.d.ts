@@ -94,9 +94,11 @@ export interface Sponsor {
     _ID?: DocumentReference;
     ID?: string;
     Name: Name;
+    IsAttachmentsAvailable: boolean;
     Address: Address;
     Email: string;
     Phone: string;
+    AddressText: string;
 
     MonthlyPayment: number;
     PaymentFrequency: PaymentFrequency;
@@ -116,12 +118,14 @@ export interface Student {
     ID?: string;
     Name: Name;
     Address: Address;
+    AddressText: string;
     Email: string;
     Phone: string;
     Notes: string;
     Institute: string;
     Course: string;
     CourseDuration: string;
+    IsAttachmentsAvailable: boolean;
     StartDate: Date | Timestamp;
     StandingOrderNumber: string;
     ScholarshipStartDate: Date | Timestamp;

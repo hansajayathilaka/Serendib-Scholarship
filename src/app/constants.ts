@@ -47,7 +47,10 @@ export class Common {
 export class AuthMessages {
     public static readonly LOGIN_TOKEN = 'brLoginToken';
     public static readonly LOGIN_BUTTON_TEXT = 'Login';
+    public static readonly NEXT_BUTTON_TEXT = 'Next';
     public static readonly LOGIN_TITLE = 'Login';
+    public static readonly FORGET_PASSWORD_TITLE = 'Forget Password';
+    public static readonly FORGET_PASSWORD_CONTENT = 'Before continue, we need to verify your identity. Please enter your email address';
     public static readonly PASSWORD_LABEL = 'Password';
     public static readonly EMAIL_LABEl = 'Email';
     public static readonly WRONG_CREDENTIALS_MESSAGE_TEXT = 'Incorrect email or password.';
@@ -150,6 +153,7 @@ export class Sponsors {
     public static readonly ADDRESS = "Address";
     public static readonly EMAIL = "Email";
     public static readonly MONTHLY_PAYMENT = "Monthly Payment";
+    public static readonly ADDRESS_TEXT = "Address";
     public static readonly PAYMENT_FREQUENCY = "Payment Frequency";
     public static readonly LAST_PAYMENT_DATE = "Last Payment Date";
     public static readonly LAST_PAYMENT_AMOUNT = "Last Payment Amount";
@@ -177,7 +181,7 @@ export class Students {
     public static readonly COURSE_DURATION = "Course Duration";
     public static readonly STANDING_ORDER_NUMBER = "Standing Order Number";
     public static readonly SCHOL_START_DATE = "Scholarship Start Date";
-    public static readonly START_DATE = "Start Date";
+    public static readonly START_DATE = "Course Start Date";
     public static readonly END_DATE = "Expected Completion Date";
     public static readonly STUDENTS_STUDY_YEAR = "Students Study Year";
     public static readonly SPONSOR = "Sponsor";

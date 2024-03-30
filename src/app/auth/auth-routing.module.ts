@@ -9,6 +9,7 @@ import { LoginRequiredGuard } from "../guards/login-required.guard";
 import { PreventLoginGuard } from "../guards/prevent-login.guard";
 import { IsAdminGuard } from "../guards/is-admin.guard";
 import { SignupGuard } from "../guards/signup.guard";
+import { ForgetPasswordEmailComponent } from "./components/forget-password-email/forget-password-email.component";
 
 const routes: Routes = [
     {
@@ -25,6 +26,11 @@ const routes: Routes = [
         path: AuthRoutes.Profile,
         component: UserProfileComponent,
         canActivate: [LoginRequiredGuard]
+    },
+    {
+        path: AuthRoutes.ForgetPassword,
+        component: ForgetPasswordEmailComponent,
+        canActivate: [PreventLoginGuard]
     },
     {
         path: AuthRoutes.ManageUsers.url,

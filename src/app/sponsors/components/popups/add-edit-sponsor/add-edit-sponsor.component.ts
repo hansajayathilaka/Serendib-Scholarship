@@ -44,6 +44,7 @@ export class AddEditSponsorComponent implements OnInit {
         LastName: this.formBuilder.control(''),
         Email: this.formBuilder.control(''),
         ContactNumber: this.formBuilder.control(''),
+        AddressText: this.formBuilder.control(''),
         Address1: this.formBuilder.control(''),
         Address2: this.formBuilder.control(''),
         City: this.formBuilder.control(''),
@@ -68,6 +69,7 @@ export class AddEditSponsorComponent implements OnInit {
             this.sponsorForm.controls['LastName'].setValue(this.data.sponsor.Name.Last);
             this.sponsorForm.controls['Email'].setValue(this.data.sponsor.Email);
             this.sponsorForm.controls['ContactNumber'].setValue(this.data.sponsor.Phone);
+            this.sponsorForm.controls['AddressText'].setValue(this.data.sponsor.AddressText);
             this.sponsorForm.controls['Address1'].setValue(this.data.sponsor.Address.Address1);
             this.sponsorForm.controls['Address2'].setValue(this.data.sponsor.Address.Address2);
             this.sponsorForm.controls['City'].setValue(this.data.sponsor.Address.City);
@@ -113,6 +115,8 @@ export class AddEditSponsorComponent implements OnInit {
                     ZipCode: this.sponsorForm.value.ZipCode ?? "",
                     Country: this.sponsorForm.value.Country ?? ""
                 },
+                IsAttachmentsAvailable: false,
+                AddressText: this.sponsorForm.value.AddressText ?? "",
                 MonthlyPayment: this.sponsorForm.value.MonthlyPayment ?? 0,
                 PaymentFrequency: this.sponsorForm.value.PaymentFrequency ?? PaymentFrequency.MONTHLY,
                 LastPaymentDate: this.sponsorForm.value.LastPaymentDate ?? new Date(),

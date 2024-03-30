@@ -1,10 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
-import {SponsorsService} from "../../../services/sponsors.service";
 import {HelperService} from "../../../services/helper.service";
 import {ActionMenuItem, Student} from "../../../types";
-import {Common, Projects, SnackBarStatus, Sponsors, Students} from "../../../constants";
-import {AddEditStudentComponent} from "../popups/add-edit-student/add-edit-student.component";
+import {Common, SnackBarStatus, Students} from "../../../constants";
 import {DeleteConfirmPopupComponent} from "../../../shared/delete-confirm-popup/delete-confirm-popup.component";
 import {StudentsService} from "../../../services/students.service";
 import { FileUploadComponent } from "../../../shared/file-upload/file-upload.component";
@@ -52,25 +50,25 @@ export class ActionMenuComponent implements OnInit {
     }
 
     onClickEdit(): void {
-        const dialogRef = this.matDialog.open(AddEditStudentComponent, {
-            width: '800px',
-            height: '500px',
-            data: {student: this.data, mode: 1}
-        });
-        dialogRef.afterClosed().subscribe(result => {
-            console.log(`Dialog result: ${result}`);
-        });
+        // const dialogRef = this.matDialog.open(AddEditStudentComponent, {
+        //     width: '800px',
+        //     height: '500px',
+        //     data: {student: this.data, mode: 1}
+        // });
+        // dialogRef.afterClosed().subscribe(result => {
+        //     console.log(`Dialog result: ${result}`);
+        // });
     }
 
     onClickView(): void {
-        const dialogRef = this.matDialog.open(AddEditStudentComponent, {
-            width: '800px',
-            height: '500px',
-            data: {student: this.data, mode: 0}
-        });
-        dialogRef.afterClosed().subscribe(result => {
-            console.log(`Dialog result: ${result}`);
-        });
+        // const dialogRef = this.matDialog.open(AddEditStudentComponent, {
+        //     width: '800px',
+        //     height: '500px',
+        //     data: {student: this.data, mode: 0}
+        // });
+        // dialogRef.afterClosed().subscribe(result => {
+        //     console.log(`Dialog result: ${result}`);
+        // });
     }
 
     onClickUpload(): void {
