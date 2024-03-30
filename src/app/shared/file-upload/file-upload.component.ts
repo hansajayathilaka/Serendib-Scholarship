@@ -5,6 +5,7 @@ import { StorageReference } from "@angular/fire/storage";
 import {AuthService} from "../../services/auth.service";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {Sponsor, Student} from "../../types";
+import { StudentsService } from 'src/app/services/students.service';
 
 @Component({
     selector: 'app-file-upload',
@@ -15,7 +16,8 @@ export class FileUploadComponent implements OnInit {
 
     constructor(
         private firebaseStorageService: FirebaseStorageService,
-        @Inject(MAT_DIALOG_DATA) public data: Sponsor | Student
+        @Inject(MAT_DIALOG_DATA) public data: Sponsor | Student,
+        private studentService: StudentsService,
     ) {
     }
 
@@ -133,6 +135,15 @@ export class FileUploadComponent implements OnInit {
                     this.files = [];
                     this.saveBtnDisabled = false;
                     this.reloadExistingFiles();
+
+                    // Check if the this.data is Student or Sponsor
+                    if ((this.data as Student).Institute && !(this.data as Student).IsAttachmentsAvailable) {
+                        const student = this.data as Student;
+                        student.IsAttachmentsAvailable = true;
+                        this.studentService.updateStudent(this.data as Student).then((res) => {
+                            console.log(res);
+                        });
+                    }
                 }).catch((err) => {
                     console.log(err);
                     this.saveBtnDisabled = false;

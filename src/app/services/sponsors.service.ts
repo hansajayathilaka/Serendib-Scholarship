@@ -10,7 +10,7 @@ import {
     updateDoc,
     where
 } from "@angular/fire/firestore";
-import {FnResponse, Sponsor} from "../types";
+import {FnResponse, Sponsor, Student} from "../types";
 import {CollectionReference, DocumentReference} from "@firebase/firestore";
 import {combineLatest, first, firstValueFrom, map, Observable} from "rxjs";
 import {StudentsService} from "./students.service";
@@ -34,7 +34,7 @@ export class SponsorsService {
         const $students = this.studentsService.getAllStudents();
 
         return combineLatest([$sponsors, $students]).pipe(
-            map(([sponsors, students]): Sponsor[] => {
+            map(([sponsors, students]: [Sponsor[], Student[]]): Sponsor[] => {
                 students.forEach((student) => {
                     if (student.Sponsor) {
                         const sponsor = sponsors.find(sponsor => String(sponsor._ID) === String(student.Sponsor?._ID));
@@ -129,5 +129,23 @@ export class SponsorsService {
 
     getSponsorByRef(sponsorRef: DocumentReference<Sponsor>) {
         return docData(sponsorRef, {idField: '_ID'}) as Observable<Sponsor>;
+    }
+
+    async nextSponsorId() {
+        const sponsorsRef = collection(this.firestore, 'Sponsors') as CollectionReference<Sponsor>;
+        const q1 = query(sponsorsRef);
+        const sponsors = await firstValueFrom(collectionData(q1, {idField: '_ID'})) as Sponsor[];
+        if (sponsors.length === 0) {
+            return '1001';
+        }
+        const sponsorIds = [];
+        for(const sponsor of sponsors) {
+            const sponsorId = Number(sponsor.ID);
+            if (!isNaN(sponsorId)) {
+                sponsorIds.push(sponsorId);
+            }
+        }
+        const nextSponsorId = Math.max(...sponsorIds) + 1;
+        return nextSponsorId.toString();
     }
 }

@@ -205,6 +205,8 @@ export class AddEditStudentComponent implements OnInit {
                 ExpectedCompletionDate: this.studentForm.value.ExpectedCompletionDate ?? "",
                 StudentsStudyYear: this.studentForm.value.StudentsStudyYear ?? "",
                 _Sponsor: this.studentForm.value.Sponsor ? this.sponsorsService.getRef(this.studentForm.value.Sponsor) : this.sponsorsService.getRef(),
+                PaymentRecords: "",
+                Completed: false,
 
                 IsActive: true,
                 _Deleted: false,
