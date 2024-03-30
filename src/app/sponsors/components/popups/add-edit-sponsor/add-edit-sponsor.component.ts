@@ -118,6 +118,7 @@ export class AddEditSponsorComponent implements OnInit {
                 LastPaymentDate: this.sponsorForm.value.LastPaymentDate ?? new Date(),
                 LastPaymentAmount: this.sponsorForm.value.LastPaymentAmount ?? 0,
                 Notes: this.sponsorForm.value.Notes ?? "",
+                PaymentRecords: "",
                 IsActive: true,
                 _Deleted: false,
             }

@@ -5,6 +5,8 @@ import {
     collectionData,
     doc,
     Firestore,
+    limit,
+    orderBy,
     query,
     setDoc,
     updateDoc,
@@ -12,7 +14,7 @@ import {
 } from "@angular/fire/firestore";
 import {CollectionReference} from "@firebase/firestore";
 import {FnResponse, Sponsor, Student} from "../types";
-import {combineLatest, map, Observable} from "rxjs";
+import {combineLatest, firstValueFrom, map, Observable} from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -34,7 +36,7 @@ export class StudentsService {
         const $sponsors = collectionData(q1Sponsors, {idField: '_ID'}) as Observable<Sponsor[]>;
 
         return combineLatest([$students, $sponsors]).pipe(
-            map(([students, sponsors]): Student[] => {
+            map(([students, sponsors]: [Student[], Sponsor[]]): Student[] => {
                 for (let student of students) {
                     if (student._Sponsor){
                         student.Sponsor = sponsors.find(sponsor => String(sponsor._ID) === student._Sponsor?.id);
@@ -115,6 +117,29 @@ export class StudentsService {
                 message: (e as Error).message,
                 data: e
             }
+        }
+    }
+
+    async nextStudentId(): Promise<string> {
+        try {
+            const studentsRef = collection(this.firestore, 'Students');
+            const q1 = query(studentsRef);
+            const students = await firstValueFrom(collectionData(q1, {idField: '_ID'})) as Student[];
+            if (students.length === 0) {
+                return '2001';
+            }
+            const studentIds = [];
+            for (const student of students) {
+                const studentId = Number(student.ID);
+                if (!isNaN(studentId)) {
+                    studentIds.push(studentId);
+                }
+            }
+            const nextSttudentId = Math.max(...studentIds) + 1;
+            return nextSttudentId.toString();
+        } catch (e) {
+            console.log(e);
+            return '-2001';
         }
     }
 }

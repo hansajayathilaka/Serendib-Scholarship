@@ -103,6 +103,7 @@ export interface Sponsor {
     LastPaymentDate: Date | Timestamp;
     LastPaymentAmount: number;
     Notes: string;
+    PaymentRecords: string;
 
     IsActive: boolean;
     _Deleted: boolean;
@@ -126,6 +127,11 @@ export interface Student {
     ScholarshipStartDate: Date | Timestamp;
     ExpectedCompletionDate: Date | Timestamp;
     StudentsStudyYear: string;
+    PaymentRecords: string;
+
+    HasAttachments: boolean;
+    Completed: boolean;
+
     _Sponsor?: DocumentReference<Sponsor>;
     Sponsor?: Sponsor
 
