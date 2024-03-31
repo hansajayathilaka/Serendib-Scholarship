@@ -34,7 +34,7 @@ export class AppComponent {
                 if (event.url === `/${CustomerRoutes.Root}/${CustomerRoutes.Ep}`) {
                     this.isCustomerUrl = true;
                 }
-                this.isForgetPassword = event.url === `/${AuthRoutes.Root}/${AuthRoutes.ForgetPassword}`;
+                this.isForgetPassword = event.url.includes("password");
             }
         });
 

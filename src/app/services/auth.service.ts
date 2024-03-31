@@ -127,11 +127,19 @@ export class AuthService {
     public ForgotPassword(passwordResetEmail: string) {
         return this.angularFireAuth
             .sendPasswordResetEmail(passwordResetEmail)
-            .then(() => {
-                window.alert('Password reset email sent, check your inbox.');
+            .then(async (result: any) => {
+                return {
+                    status: true,
+                    message: "Password reset email sent, check your inbox.",
+                };
             })
             .catch((error) => {
-                window.alert(error);
+                console.log(error.message);
+                return {
+                    status: false,
+                    message: error.message as string,
+                    data: error
+                };
             });
     }
 

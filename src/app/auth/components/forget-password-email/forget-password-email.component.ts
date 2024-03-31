@@ -3,6 +3,8 @@ import { FormBuilder, Validators } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { AuthMessages, ErrorMessages } from "../../../constants";
 import { environment } from "../../../../environments/environment";
+import { AuthService } from "../../../services/auth.service";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'app-forget-password-email',
@@ -14,7 +16,9 @@ export class ForgetPasswordEmailComponent implements OnInit {
 
     constructor(
         private formBuilder: FormBuilder,
-        private spinner: NgxSpinnerService
+        private spinner: NgxSpinnerService,
+        private authService: AuthService,
+        private router: Router
     ) {
     }
 
@@ -45,7 +49,11 @@ export class ForgetPasswordEmailComponent implements OnInit {
         if (this.forgetPasswordEmailForm.valid) {
             this.isLoading = true;
             this.spinner.show().then(() => {
-
+                this.authService.ForgotPassword(this.forgetPasswordEmailForm.value.email).then(result => {
+                    if (result.status) {
+                        this.router.navigate(['verify-email-address']);
+                    }
+                })
             });
         }
     }

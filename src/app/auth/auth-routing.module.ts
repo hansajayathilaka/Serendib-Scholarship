@@ -10,6 +10,7 @@ import { PreventLoginGuard } from "../guards/prevent-login.guard";
 import { IsAdminGuard } from "../guards/is-admin.guard";
 import { SignupGuard } from "../guards/signup.guard";
 import { ForgetPasswordEmailComponent } from "./components/forget-password-email/forget-password-email.component";
+import { ResetEmailSendStatusComponent } from "./components/reset-email-send-status/reset-email-send-status.component";
 
 const routes: Routes = [
     {
@@ -30,6 +31,11 @@ const routes: Routes = [
     {
         path: AuthRoutes.ForgetPassword,
         component: ForgetPasswordEmailComponent,
+        canActivate: [PreventLoginGuard]
+    },
+    {
+        path: AuthRoutes.ResetEmailSendStatus,
+        component: ResetEmailSendStatusComponent,
         canActivate: [PreventLoginGuard]
     },
     {

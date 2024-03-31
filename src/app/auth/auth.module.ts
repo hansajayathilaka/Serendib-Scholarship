@@ -11,6 +11,7 @@ import { MaterialModule } from "../app.material.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ForgetPasswordEmailComponent } from './components/forget-password-email/forget-password-email.component';
+import { ResetEmailSendStatusComponent } from './components/reset-email-send-status/reset-email-send-status.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ForgetPasswordEmailComponent } from './components/forget-password-email
         ManageUsersComponent,
         AddEditUserComponent,
         UserProfileComponent,
-        ForgetPasswordEmailComponent
+        ForgetPasswordEmailComponent,
+        ResetEmailSendStatusComponent
     ],
     imports: [
         CommonModule,

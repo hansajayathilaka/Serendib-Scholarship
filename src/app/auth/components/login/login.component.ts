@@ -5,7 +5,7 @@ import { AuthService } from "../../../services/auth.service";
 import { TokenStorageService } from "../../../services/token-storage.service";
 import { UserService } from "../../../services/user.service";
 import { HelperService } from "../../../services/helper.service";
-import { AuthMessages, ErrorMessages, SnackBarStatus } from "../../../constants";
+import { AuthMessages, ErrorMessages, firebaseErrors, SnackBarStatus } from "../../../constants";
 import { environment } from "../../../../environments/environment";
 import { AuthRoutes } from "../../../route-data";
 import { NgxSpinnerService } from "ngx-spinner";
@@ -59,14 +59,14 @@ export class LoginComponent implements OnInit {
     }
 
     onSubmit() {
-        this.spinner.show().then(() => {
-            if (this.loginForm.valid) {
+        if (this.loginForm.valid) {
+            this.spinner.show().then(() => {
                 this.isLoading = true;
                 this.authenticationService.SignIn(this.loginForm.value.email, this.loginForm.value.password).then(result => {
                     if (!result.status) {
                         this.isLoginFailed = true;
                         this.isLoading = false;
-                        if (result.data.code === "auth/wrong-password" || result.data.code === "auth/invalid-email" || result.data.code === "auth/user-not-found") {
+                        if (firebaseErrors.includes(result.data.code)) {
                             this.spinner.hide().then(() => {
                                 this.isLoading = false;
                                 this.helperService.openSnackBar({
@@ -90,8 +90,8 @@ export class LoginComponent implements OnInit {
                         });
                     }
                 });
-            }
-        });
+            });
+        }
     }
 
 }

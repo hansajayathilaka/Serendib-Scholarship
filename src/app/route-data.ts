@@ -33,5 +33,6 @@ export class AuthRoutes {
     public static readonly ForgetPassword = 'forget-password'
     public static readonly SignUp = 'signup'
     public static readonly Profile = 'me'
+    public static readonly ResetEmailSendStatus = 'reset-password-email-status'
     public static readonly ManageUsers = {url: 'users', title: 'Manage Users'}
 }

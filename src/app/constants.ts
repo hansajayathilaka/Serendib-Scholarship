@@ -213,3 +213,10 @@ export class ErrorMessages {
     }
 }
 
+export const firebaseErrors = [
+    "auth/wrong-password",
+    "auth/invalid-email",
+    "auth/user-not-found",
+    "auth/invalid-login-credentials"
+]
+
