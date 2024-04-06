@@ -51,7 +51,7 @@ export class AddEditSponsorComponent implements OnInit {
         State: this.formBuilder.control(''),
         ZipCode: this.formBuilder.control(''),
         Country: this.formBuilder.control(''),
-
+        PaymentRecords: this.formBuilder.control(''),
         MonthlyPayment: this.formBuilder.control(''),
         PaymentFrequency: this.formBuilder.control(''),
         LastPaymentDate: this.formBuilder.control(''),
@@ -80,6 +80,7 @@ export class AddEditSponsorComponent implements OnInit {
 
             this.sponsorForm.controls['MonthlyPayment'].setValue(this.data.sponsor.MonthlyPayment);
             this.sponsorForm.controls['PaymentFrequency'].setValue(this.data.sponsor.PaymentFrequency);
+            this.sponsorForm.controls['PaymentRecords'].setValue(this.data.sponsor.PaymentRecords);
             try {
                 this.sponsorForm.controls['LastPaymentDate'].setValue((this.data.sponsor.LastPaymentDate as Timestamp).toDate());
             } catch (e) { }
@@ -125,7 +126,7 @@ export class AddEditSponsorComponent implements OnInit {
                 LastPaymentDate: this.sponsorForm.value.LastPaymentDate ?? new Date(),
                 LastPaymentAmount: this.sponsorForm.value.LastPaymentAmount ?? 0,
                 Notes: this.sponsorForm.value.Notes ?? "",
-                PaymentRecords: "",
+                PaymentRecords: this.sponsorForm.value.PaymentRecords ?? "",
                 IsActive: true,
                 _Deleted: false,
             }
