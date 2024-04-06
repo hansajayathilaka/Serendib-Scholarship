@@ -14,7 +14,7 @@ import {
 } from "../../../constants";
 import { User } from "../../../types";
 import { environment } from "../../../../environments/environment";
-import { CustomerRoutes } from "../../../route-data";
+import { StudentRoutes } from "../../../route-data";
 
 @Component({
     selector: 'app-sign-up',
@@ -77,7 +77,7 @@ export class SignupComponent implements OnInit {
                         this.userService.UpdateUserData(this.user).then(result => {
                             if (result.status) {
                                 localStorage.setItem('isFirstLogin', 'false');
-                                this.router.navigate([CustomerRoutes.Root, CustomerRoutes.Ep.url]).then(() => {
+                                this.router.navigate([StudentRoutes.Root, StudentRoutes.All.url]).then(() => {
                                     this.isLoading = false;
                                     window.location.reload();
                                     this.helperService.openSnackBar({

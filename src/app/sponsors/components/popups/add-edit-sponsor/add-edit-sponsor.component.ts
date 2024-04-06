@@ -51,7 +51,7 @@ export class AddEditSponsorComponent implements OnInit {
         State: this.formBuilder.control(''),
         ZipCode: this.formBuilder.control(''),
         Country: this.formBuilder.control(''),
-
+        PaymentRecords: this.formBuilder.control(''),
         MonthlyPayment: this.formBuilder.control(''),
         PaymentFrequency: this.formBuilder.control(''),
         LastPaymentDate: this.formBuilder.control(''),
@@ -60,7 +60,8 @@ export class AddEditSponsorComponent implements OnInit {
     });
 
 
-    ngOnInit(): void {
+    async ngOnInit(): Promise<void> {
+
         if (this.data.mode == 1 || this.data.mode == 0) {
             this.TITLE = this.SPONSOR_MESSAGES.EDIT;
             this.sponsorForm.controls['ID'].setValue(this.data.sponsor.ID);
@@ -79,6 +80,7 @@ export class AddEditSponsorComponent implements OnInit {
 
             this.sponsorForm.controls['MonthlyPayment'].setValue(this.data.sponsor.MonthlyPayment);
             this.sponsorForm.controls['PaymentFrequency'].setValue(this.data.sponsor.PaymentFrequency);
+            this.sponsorForm.controls['PaymentRecords'].setValue(this.data.sponsor.PaymentRecords);
             try {
                 this.sponsorForm.controls['LastPaymentDate'].setValue((this.data.sponsor.LastPaymentDate as Timestamp).toDate());
             } catch (e) { }
@@ -86,6 +88,8 @@ export class AddEditSponsorComponent implements OnInit {
             this.sponsorForm.controls['Notes'].setValue(this.data.sponsor.Notes);
         } else {
             this.TITLE = this.SPONSOR_MESSAGES.ADD_NEW;
+            let sponsorId = await this.sponsorsService.nextSponsorId();
+            this.sponsorForm.controls['ID'].setValue(sponsorId);
         }
 
         if (this.data.mode == 0) {
@@ -122,7 +126,7 @@ export class AddEditSponsorComponent implements OnInit {
                 LastPaymentDate: this.sponsorForm.value.LastPaymentDate ?? new Date(),
                 LastPaymentAmount: this.sponsorForm.value.LastPaymentAmount ?? 0,
                 Notes: this.sponsorForm.value.Notes ?? "",
-                PaymentRecords: "",
+                PaymentRecords: this.sponsorForm.value.PaymentRecords ?? "",
                 IsActive: true,
                 _Deleted: false,
             }

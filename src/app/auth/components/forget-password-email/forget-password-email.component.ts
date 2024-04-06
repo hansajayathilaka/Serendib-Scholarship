@@ -50,8 +50,11 @@ export class ForgetPasswordEmailComponent implements OnInit {
             this.isLoading = true;
             this.spinner.show().then(() => {
                 this.authService.ForgotPassword(this.forgetPasswordEmailForm.value.email).then(result => {
+                    console.log(result);
                     if (result.status) {
-                        this.router.navigate(['verify-email-address']);
+                        this.router.navigate(['auth/reset-password-email-status']);
+                    } else {
+                        console.log(result);
                     }
                 })
             });

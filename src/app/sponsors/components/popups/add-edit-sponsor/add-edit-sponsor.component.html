@@ -6,7 +6,7 @@
                 <div class="col-6">
                     <mat-form-field appearance="fill" class="w-100">
                         <mat-label>{{SPONSOR_MESSAGES.ID}}</mat-label>
-                        <input formControlName="ID" matInput>
+                        <input formControlName="ID" matInput readonly>
                     </mat-form-field>
                 </div>
             </div>
@@ -125,6 +125,14 @@
                     <mat-form-field appearance="fill" class="w-100">
                         <mat-label>{{SPONSOR_MESSAGES.ADDRESS_TEXT}}</mat-label>
                         <textarea rows="4" formControlName="AddressText" matInput></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row w-100 mx-0">
+                <div class="col-12">
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>{{SPONSOR_MESSAGES.PAYMENT_RECORDS}}</mat-label>
+                        <textarea rows="8" formControlName="PaymentRecords" matInput></textarea>
                     </mat-form-field>
                 </div>
             </div>

@@ -8,7 +8,7 @@
                             <div class="col-6">
                                 <mat-form-field appearance="fill" class="w-100">
                                     <mat-label>{{ STUDENT_MESSAGES.ID }}</mat-label>
-                                    <input formControlName="ID" matInput>
+                                    <input formControlName="ID" matInput readonly>
                                 </mat-form-field>
                             </div>
                             <div class="col-6">
@@ -201,7 +201,7 @@
                             <mat-icon>done</mat-icon>
                             {{ COMMON_MESSAGES.SAVE_BUTTON_TEXT }}
                         </button>
-                        <button [mat-dialog-close]="false" mat-button mat-dialog-close>
+                        <button mat-button (click)="onCancel()">
                             <mat-icon>close</mat-icon>
                             {{ COMMON_MESSAGES.CANCEL_BUTTON_TEXT }}
                         </button>
