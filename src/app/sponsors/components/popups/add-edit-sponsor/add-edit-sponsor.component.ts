@@ -61,7 +61,7 @@ export class AddEditSponsorComponent implements OnInit {
 
 
     async ngOnInit(): Promise<void> {
-        let sponsorId = await this.sponsorsService.nextSponsorId();
+
         if (this.data.mode == 1 || this.data.mode == 0) {
             this.TITLE = this.SPONSOR_MESSAGES.EDIT;
             this.sponsorForm.controls['ID'].setValue(this.data.sponsor.ID);
@@ -87,6 +87,8 @@ export class AddEditSponsorComponent implements OnInit {
             this.sponsorForm.controls['Notes'].setValue(this.data.sponsor.Notes);
         } else {
             this.TITLE = this.SPONSOR_MESSAGES.ADD_NEW;
+            let sponsorId = await this.sponsorsService.nextSponsorId();
+            this.sponsorForm.controls['ID'].setValue(sponsorId);
         }
 
         if (this.data.mode == 0) {
