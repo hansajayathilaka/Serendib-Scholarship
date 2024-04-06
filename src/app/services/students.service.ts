@@ -3,7 +3,7 @@ import {
     addDoc,
     collection,
     collectionData,
-    doc,
+    doc, docData,
     Firestore,
     limit,
     orderBy,
@@ -85,6 +85,25 @@ export class StudentsService {
                 status: true,
                 message: "Student updated successfully",
                 data: student
+            }
+        } catch (e) {
+            console.log(e);
+            return {
+                status: false,
+                message: (e as Error).message,
+                data: e
+            }
+        }
+    }
+
+    async getStudent(id: string) {
+        try {
+            const studentRef = doc(this.firestore, 'Students', id);
+            let data = await firstValueFrom(docData(studentRef, {idField: '_ID'}))
+            return {
+                status: true,
+                message: "Student updated successfully",
+                data: data as Student
             }
         } catch (e) {
             console.log(e);

@@ -80,7 +80,9 @@ export class LoginComponent implements OnInit {
                         }
                     } else {
                         const firebaseUserId = JSON.parse(localStorage.getItem('user')!)['uid'];
+                        console.log(firebaseUserId);
                         this.userService.GetAUser(firebaseUserId).subscribe(user => {
+                            console.log(user)
                             localStorage.setItem('isFirstLogin', user.IsFirstLogin!.toString());
                             this.isLoginFailed = false;
                             this.isLoggedIn = true;

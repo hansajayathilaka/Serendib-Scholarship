@@ -3,7 +3,7 @@ import { FormBuilder } from "@angular/forms";
 import { Subscription } from "rxjs";
 import firebase from "firebase/compat";
 import Timestamp = firebase.firestore.Timestamp;
-
+import { Location } from '@angular/common'
 import * as _moment from 'moment';
 // tslint:disable-next-line:no-duplicate-imports
 // @ts-ignore
@@ -16,6 +16,7 @@ import {Sponsor, Student} from "../../../types";
 import {HelperService} from "../../../services/helper.service";
 import {StudentsService} from "../../../services/students.service";
 import {SponsorsService} from "../../../services/sponsors.service";
+import { ActivatedRoute } from "@angular/router";
 
 const moment = _rollupMoment || _moment;
 
@@ -64,14 +65,26 @@ export class AddEditStudentComponent implements OnInit {
     sponsors: Sponsor[] = [];
     subscriptions: Subscription[] = [];
     student!: Student;
+    studentId = "";
     mode!: number;
 
     constructor(
         private formBuilder: FormBuilder,
         private helperService: HelperService,
         private studentsService: StudentsService,
-        private sponsorsService: SponsorsService
+        private sponsorsService: SponsorsService,
+        private route: ActivatedRoute,
+        private location: Location
     ) {
+        this.route.params.subscribe(params => {
+            this.studentId = params['id'];
+        });
+        let modeStr = this.route.snapshot.queryParamMap.get("mode");
+        if (modeStr === null || modeStr === undefined) {
+            this.mode = 2;
+        } else {
+            this.mode = +modeStr;
+        }
     }
 
     studentForm = this.formBuilder.group({
@@ -101,10 +114,8 @@ export class AddEditStudentComponent implements OnInit {
     });
 
     async ngOnInit() {
-        console.log(this.student);
-        console.log(this.student.ScholarshipStartDate);
-        console.log((this.student.ScholarshipStartDate as Timestamp).toDate());
         if (this.mode == 1 || this.mode == 0) {
+            this.student = (await this.studentsService.getStudent(this.studentId)).data as Student;
             this.TITLE = this.STUDENT_MESSAGES.EDIT;
             this.studentForm.controls['ID'].setValue(this.student.ID);
             this.studentForm.controls['FirstName'].setValue(this.student.Name.First);
@@ -133,6 +144,8 @@ export class AddEditStudentComponent implements OnInit {
 
         } else {
             this.TITLE = this.STUDENT_MESSAGES.ADD_NEW;
+            let studentId = await this.studentsService.nextStudentId();
+            this.studentForm.controls['ID'].setValue(studentId);
         }
 
         if (this.mode == 0) {
@@ -154,6 +167,10 @@ export class AddEditStudentComponent implements OnInit {
                 }
             }
         }));
+    }
+
+    onCancel() {
+        this.location.back();
     }
 
     setMonthAndYear(normalizedMonthAndYear: Moment, datepicker: MatDatepicker<Moment>) {

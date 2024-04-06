@@ -6,7 +6,7 @@ import { Title } from "@angular/platform-browser";
 import { Common, LoginStatus } from "./constants";
 import { UserProfileComponent } from "./auth/components/popups/user-profile/user-profile.component";
 import { environment } from "../environments/environment";
-import { AuthRoutes, CustomerRoutes } from "./route-data";
+import { AuthRoutes, StudentRoutes } from "./route-data";
 import { NavigationMenuItems } from "./navigation-menu";
 import { filter, map, mergeMap } from "rxjs";
 import { LoginComponent } from "./auth/components/login/login.component";
@@ -31,7 +31,7 @@ export class AppComponent {
         this.router.events.subscribe((event) => {
             if (event instanceof NavigationStart) {
                 this.isFirstLogin = event.url === `/${AuthRoutes.Root}/${AuthRoutes.SignUp}`;
-                if (event.url === `/${CustomerRoutes.Root}/${CustomerRoutes.Ep}`) {
+                if (event.url === `/${StudentRoutes.Root}/${StudentRoutes.All}`) {
                     this.isCustomerUrl = true;
                 }
                 this.isForgetPassword = event.url.includes("password");

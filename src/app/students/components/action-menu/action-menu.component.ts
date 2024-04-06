@@ -6,6 +6,7 @@ import {Common, SnackBarStatus, Students} from "../../../constants";
 import {DeleteConfirmPopupComponent} from "../../../shared/delete-confirm-popup/delete-confirm-popup.component";
 import {StudentsService} from "../../../services/students.service";
 import { FileUploadComponent } from "../../../shared/file-upload/file-upload.component";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'app-action-menu',
@@ -17,7 +18,8 @@ export class ActionMenuComponent implements OnInit {
     constructor(
         private matDialog: MatDialog,
         private studentsService: StudentsService,
-        private helperService: HelperService
+        private helperService: HelperService,
+        private router: Router
     ) {
     }
 
@@ -50,25 +52,11 @@ export class ActionMenuComponent implements OnInit {
     }
 
     onClickEdit(): void {
-        // const dialogRef = this.matDialog.open(AddEditStudentComponent, {
-        //     width: '800px',
-        //     height: '500px',
-        //     data: {student: this.data, mode: 1}
-        // });
-        // dialogRef.afterClosed().subscribe(result => {
-        //     console.log(`Dialog result: ${result}`);
-        // });
+        this.router.navigate(['students/edit', this.data._ID], {queryParams: {mode: 1}}).then();
     }
 
     onClickView(): void {
-        // const dialogRef = this.matDialog.open(AddEditStudentComponent, {
-        //     width: '800px',
-        //     height: '500px',
-        //     data: {student: this.data, mode: 0}
-        // });
-        // dialogRef.afterClosed().subscribe(result => {
-        //     console.log(`Dialog result: ${result}`);
-        // });
+        this.router.navigate(['students/view', this.data._ID], {queryParams: {mode: 0}}).then();
     }
 
     onClickUpload(): void {

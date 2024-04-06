@@ -36,6 +36,11 @@
                         {{VALIDATION_MESSAGES.required(AUTH_MESSAGES.PASSWORD_LABEL)}}
                     </mat-error>
                 </mat-form-field>
+                <div class="text-end">
+                    <a mat-button class="menu-btn" [routerLink]="['../forget-password']">
+                        Forgot Password
+                    </a>
+                </div>
 
                 <button mat-raised-button color="primary" type="submit" class="btn-p mt-3 mb-2" style="height: 50px;">
                     <mat-icon>done</mat-icon>

@@ -2,10 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from "./shared/not-found/not-found.component";
 import { LoginRequiredGuard } from "./guards/login-required.guard";
-import {
-    AuthRoutes,
-    ProjectRoutes, SponsorRoutes, StudentRoutes,
-} from "./route-data";
+import { AuthRoutes, SponsorRoutes, StudentRoutes, } from "./route-data";
 
 
 const routes: Routes = [

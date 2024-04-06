@@ -60,7 +60,8 @@ export class AddEditSponsorComponent implements OnInit {
     });
 
 
-    ngOnInit(): void {
+    async ngOnInit(): Promise<void> {
+        let sponsorId = await this.sponsorsService.nextSponsorId();
         if (this.data.mode == 1 || this.data.mode == 0) {
             this.TITLE = this.SPONSOR_MESSAGES.EDIT;
             this.sponsorForm.controls['ID'].setValue(this.data.sponsor.ID);

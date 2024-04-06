@@ -5,7 +5,7 @@ import { Router } from "@angular/router";
 import { LoginStatus } from "../constants";
 import firebase from "firebase/compat/app";
 import { UserService } from "./user.service";
-import { AuthRoutes, CustomerRoutes } from "../route-data";
+import { AuthRoutes, StudentRoutes } from "../route-data";
 
 @Injectable({
     providedIn: 'root'
@@ -131,6 +131,7 @@ export class AuthService {
                 return {
                     status: true,
                     message: "Password reset email sent, check your inbox.",
+                    data: result
                 };
             })
             .catch((error) => {
@@ -162,7 +163,7 @@ export class AuthService {
             .signInWithPopup(provider)
             .then(async (result: any) => {
                 this.ngZone.run(() => {
-                    this.router.navigate([CustomerRoutes.Ep.url]);
+                    this.router.navigate([StudentRoutes.All.url]);
                 });
                 await this.userService.SetFirebaseUserData(result.user);
             })

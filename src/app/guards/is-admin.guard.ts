@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, UrlTree } from '@angular/router';
-import { CustomerRoutes } from "../route-data";
 import { AuthService } from "../services/auth.service";
+import { StudentRoutes } from "../route-data";
 
 
 @Injectable({
@@ -14,7 +14,7 @@ export class IsAdminGuard implements CanActivate {
 
     canActivate(): boolean | UrlTree {
         if (!this.auth.isAdmin()) {
-            return this.router.createUrlTree([`${CustomerRoutes.Root}/${CustomerRoutes.Ep.url}`]);
+            return this.router.createUrlTree([`${StudentRoutes.Root}/${StudentRoutes.All.url}`]);
         }
         return true;
     }
