@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {Address, Common, ErrorMessages, Names, PaymentFrequency, SnackBarStatus, Sponsors} from "../../../../constants";
 import {Sponsor} from "../../../../types";
-import {FormBuilder, Validators} from "@angular/forms";
+import {UntypedFormBuilder, Validators} from "@angular/forms";
 import {HelperService} from "../../../../services/helper.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {SponsorsService} from "../../../../services/sponsors.service";
@@ -28,7 +28,7 @@ export class AddEditSponsorComponent implements OnInit {
     PaymentFrequencyList = Object.entries(PaymentFrequency).map(([key, value]) => ({ key, value }));
 
     constructor(
-        private formBuilder: FormBuilder,
+        private formBuilder: UntypedFormBuilder,
         private helperService: HelperService,
         private sponsorsService: SponsorsService,
         private dialogRef: MatDialogRef<AddEditSponsorComponent>,

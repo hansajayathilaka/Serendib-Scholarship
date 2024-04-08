@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from "@angular/forms";
+import { UntypedFormBuilder, Validators } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { AuthMessages, ErrorMessages } from "../../../constants";
 import { environment } from "../../../../environments/environment";
@@ -15,7 +15,7 @@ export class ForgetPasswordEmailComponent implements OnInit {
     @Input() isHidden: boolean = false;
 
     constructor(
-        private formBuilder: FormBuilder,
+        private formBuilder: UntypedFormBuilder,
         private spinner: NgxSpinnerService,
         private authService: AuthService,
         private router: Router

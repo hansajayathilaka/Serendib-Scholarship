@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
 import { AuthService } from "../../../services/auth.service";
 import { TokenStorageService } from "../../../services/token-storage.service";
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 
     constructor(
         private authenticationService: AuthService,
-        private formBuilder: FormBuilder,
+        private formBuilder: UntypedFormBuilder,
         private tokenStorageService: TokenStorageService,
         private router: Router,
         private helperService: HelperService,

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
 import { UserService } from "../../../services/user.service";
 import { AuthService } from "../../../services/auth.service";
@@ -53,7 +53,7 @@ export class SignupComponent implements OnInit {
     AUTH_MESSAGES = AuthMessages;
 
     constructor(
-        private formBuilder: FormBuilder,
+        private formBuilder: UntypedFormBuilder,
         private userService: UserService,
         private authService: AuthService,
         private router: Router,

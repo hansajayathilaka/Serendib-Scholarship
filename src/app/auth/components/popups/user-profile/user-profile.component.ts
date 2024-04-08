@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthMessages, Common, ErrorMessages, SnackBarStatus, UserMessages } from "../../../../constants";
-import { FormBuilder, Validators } from "@angular/forms";
+import { UntypedFormBuilder, Validators } from "@angular/forms";
 import { User } from "../../../../types";
 import { UserService } from "../../../../services/user.service";
 import { HelperService } from "../../../../services/helper.service";
@@ -15,7 +15,7 @@ import { AuthService } from "../../../../services/auth.service";
 export class UserProfileComponent implements OnInit {
 
     constructor(
-        private formBuilder: FormBuilder,
+        private formBuilder: UntypedFormBuilder,
         private userService: UserService,
         private authService: AuthService,
         private dialogRef: MatDialogRef<UserProfileComponent>,

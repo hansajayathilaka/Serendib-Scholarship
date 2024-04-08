@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from "@angular/forms";
+import { UntypedFormBuilder } from "@angular/forms";
 import { Subscription } from "rxjs";
 import firebase from "firebase/compat";
 import Timestamp = firebase.firestore.Timestamp;
@@ -69,7 +69,7 @@ export class AddEditStudentComponent implements OnInit {
     mode!: number;
 
     constructor(
-        private formBuilder: FormBuilder,
+        private formBuilder: UntypedFormBuilder,
         private helperService: HelperService,
         private studentsService: StudentsService,
         private sponsorsService: SponsorsService,

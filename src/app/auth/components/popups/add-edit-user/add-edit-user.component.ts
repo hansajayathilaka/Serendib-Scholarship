@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthMessages, Common, ErrorMessages, SnackBarStatus, UserManagementMessages } from "../../../../constants";
 import { MatDialogRef } from "@angular/material/dialog";
-import { FormBuilder, Validators } from "@angular/forms";
+import { UntypedFormBuilder, Validators } from "@angular/forms";
 import { HelperService } from "../../../../services/helper.service";
 import { AuthService } from "../../../../services/auth.service";
 
@@ -14,7 +14,7 @@ export class AddEditUserComponent implements OnInit {
     constructor(
         private authService: AuthService,
         private dialogRef: MatDialogRef<AddEditUserComponent>,
-        private formBuilder: FormBuilder,
+        private formBuilder: UntypedFormBuilder,
         private helperService: HelperService
     ) {
     }
