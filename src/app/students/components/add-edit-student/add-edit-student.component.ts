@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from "@angular/forms";
+import { FormBuilder, Validators } from "@angular/forms";
 import { Subscription } from "rxjs";
 import firebase from "firebase/compat";
 import Timestamp = firebase.firestore.Timestamp;
@@ -110,7 +110,7 @@ export class AddEditStudentComponent implements OnInit {
         StartDate: this.formBuilder.control(''),
         ExpectedCompletionDate: this.formBuilder.control(''),
         StudentsStudyYear: this.formBuilder.control(''),
-        Sponsor: this.formBuilder.control(''),
+        Sponsor: this.formBuilder.control('', [Validators.required]),
     });
 
     async ngOnInit() {
@@ -157,7 +157,7 @@ export class AddEditStudentComponent implements OnInit {
             if (data !== undefined) {
                 this.sponsors = data;
                 console.log(this.sponsors);
-                if (this.student._Sponsor) {
+                if (this.student?._Sponsor) {
                     const _sponsor = this.sponsors.find(s => String(s._ID) == this.student._Sponsor?.id);
                     if (_sponsor && String(_sponsor._ID) === 'NONE' || !_sponsor) {
                         this.studentForm.controls['Sponsor'].setValue('NONE');
@@ -216,10 +216,10 @@ export class AddEditStudentComponent implements OnInit {
                 Institute: this.studentForm.value.Institute ?? "",
                 Course: this.studentForm.value.Course ?? "",
                 StandingOrderNumber: this.studentForm.value.StandingOrderNumber ?? "",
-                ScholarshipStartDate: this.studentForm.value.ScholarshipStartDate ?? "",
+                ScholarshipStartDate: this.studentForm.value.ScholarshipStartDate != "" ? new Date(this.studentForm.value.ScholarshipStartDate) : null,
                 CourseDuration: this.studentForm.value.CourseDuration ?? "",
-                StartDate: this.studentForm.value.StartDate ?? "",
-                ExpectedCompletionDate: this.studentForm.value.ExpectedCompletionDate ?? "",
+                StartDate: this.studentForm.value.StartDate != "" ? new Date(this.studentForm.value.StartDate) : null,
+                ExpectedCompletionDate: this.studentForm.value.ExpectedCompletionDate != "" ? new Date(this.studentForm.value.ExpectedCompletionDate) : null,
                 StudentsStudyYear: this.studentForm.value.StudentsStudyYear ?? "",
                 _Sponsor: this.studentForm.value.Sponsor ? this.sponsorsService.getRef(this.studentForm.value.Sponsor) : this.sponsorsService.getRef(),
                 PaymentRecords: "",

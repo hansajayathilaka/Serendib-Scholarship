@@ -126,10 +126,10 @@ export interface Student {
     Course: string;
     CourseDuration: string;
     IsAttachmentsAvailable: boolean;
-    StartDate: Date | Timestamp;
+    StartDate?: Date | Timestamp | null;
     StandingOrderNumber: string;
-    ScholarshipStartDate: Date | Timestamp;
-    ExpectedCompletionDate: Date | Timestamp;
+    ScholarshipStartDate?: Date | Timestamp | null;
+    ExpectedCompletionDate?: Date | Timestamp | null;
     StudentsStudyYear: string;
     PaymentRecords: string;
     Completed: boolean;

@@ -53,6 +53,7 @@ export class AllStudentsComponent implements OnInit {
                 this.isLoading = true;
             } else {
                 data = Array.from(data!);
+                console.log(data)
                 this.dataSource = new MatTableDataSource(data);
                 this.dataSource.sort = this.sort;
                 this.dataSource.paginator = this.paginator;
